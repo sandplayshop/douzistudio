@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Douzi Studio — 網頁開發、AI 應用、交易系統、心理科技解決方案">
+  <title>Douzi Studio</title>
+  <style>
+    :root {
+      --bg:        #080810;
+      --bg2:       #0e0e1a;
+      --bg3:       #14141f;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #e8e8f2;
+      --muted:     #6b6b8a;
+      --accent:    #4fc3f7;
+      --accent2:   #7c4dff;
+      --glow:      rgba(79,195,247,0.15);
+      --font:      -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      --mono:      'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(8,8,16,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 8rem 2.5rem 4rem;
+      max-width: 1100px; margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block; width: 2rem; height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 .line2 {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #080810;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: #81d4fa;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* 背景格線 */
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+      background-image:
+        linear-gradient(rgba(79,195,247,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,195,247,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    /* ── SECTION 共用 ── */
+    section {
+      padding: 6rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 3.5rem;
+      line-height: 1.8;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 2.5rem;
+    }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(79,195,247,0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .service-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      background: rgba(79,195,247,0.1);
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: rgba(79,195,247,0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    }
+
+    .project-status {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-live { background: #4caf50; box-shadow: 0 0 6px #4caf50; }
+    .status-wip  { background: #ff9800; }
+    .status-soon { background: var(--muted); }
+
+    .project-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.3rem;
+      transition: gap 0.2s;
+    }
+
+    .project-link:hover { gap: 0.6rem; }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, var(--glow), transparent 70%);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-email {
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .contact-email:hover { opacity: 0.7; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--accent); }
+
+    .footer-links {
+      display: flex; gap: 1.5rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      section { padding: 4rem 1.25rem; }
+      #hero { padding: 7rem 1.25rem 3rem; }
+      .contact-box { padding: 2.5rem 1.5rem; }
+      footer { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Douzi<span>.</span>Studio</a>
+  <ul class="nav-links">
+    <li><a href="#services">服務</a></li>
+    <li><a href="#projects">專案</a></li>
+    <li><a href="#contact">聯絡</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative; overflow:hidden;">
+  <div class="hero-grid"></div>
+  <div id="hero">
+    <p class="hero-tag">Technology Studio</p>
+    <h1>
+      Build with<br>
+      <span class="line2">Purpose.</span>
+    </h1>
+    <p class="hero-desc">
+      結合網頁開發、AI 應用、交易系統與心理科技，<br>
+      為複雜問題設計精準的數位解決方案。
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">查看專案 →</a>
+      <a href="#contact" class="btn btn-outline">開始合作</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-tag">What I Do</p>
+  <h2 class="section-title">服務項目</h2>
+  <p class="section-desc">跨領域的技術能力，為不同產業提供客製化的數位解決方案。</p>
+  <div class="services-grid">
+
+    <div class="service-card fade-in">
+      <span class="service-icon">⬡</span>
+      <h3>網頁設計開發</h3>
+      <p>從視覺設計到全端開發，打造高效能、可擴展的網頁應用程式。</p>
+      <div class="service-tags">
+        <span class="tag">React</span>
+        <span class="tag">Python</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">WordPress</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-icon">◈</span>
+      <h3>AI 應用程式</h3>
+      <p>整合大型語言模型，開發智慧化工具、教育平台與自動化系統。</p>
+      <div class="service-tags">
+        <span class="tag">Claude API</span>
+        <span class="tag">GPT</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Prompt Eng.</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-icon">◎</span>
+      <h3>交易系統工具</h3>
+      <p>開發技術分析工具、自動化策略與即時數據視覺化交易輔助系統。</p>
+      <div class="service-tags">
+        <span class="tag">MACD</span>
+        <span class="tag">TW Futures</span>
+        <span class="tag">Crypto</span>
+        <span class="tag">Backtesting</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-icon">◇</span>
+      <h3>心理科技應用</h3>
+      <p>結合心理學專業，開發沙盤治療平台、臨床記錄系統與心理測驗工具。</p>
+      <div class="service-tags">
+        <span class="tag">Sandplay</span>
+        <span class="tag">Clinical AI</span>
+        <span class="tag">Assessment</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-tag">Portfolio</p>
+  <h2 class="section-title">近期專案</h2>
+  <p class="section-desc">持續開發中的作品，每個專案都在解決一個真實的問題。</p>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <p class="project-status">
+        <span class="status-dot status-wip"></span>進行中
+      </p>
+      <h3>Online Sandtray</h3>
+      <p>線上沙盤治療平台，讓心理師與個案在遠端進行沙遊治療，支援多元沙具庫與療程記錄。</p>
+      <div class="service-tags" style="margin-top:1rem;">
+        <span class="tag">React</span>
+        <span class="tag">Psychology</span>
+        <span class="tag">Therapy</span>
+      </div>
+      <div class="project-footer">
+        <span style="font-size:0.8rem; color:var(--muted); font-family:var(--mono);">即將上線</span>
+        <span style="color:var(--muted);">→</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <p class="project-status">
+        <span class="status-dot status-wip"></span>進行中
+      </p>
+      <h3>AI 應用規劃師</h3>
+      <p>協助企業與個人規劃 AI 導入策略的互動式評估工具，提供客製化的 AI 應用路徑建議。</p>
+      <div class="service-tags" style="margin-top:1rem;">
+        <span class="tag">AI</span>
+        <span class="tag">Education</span>
+        <span class="tag">Assessment</span>
+      </div>
+      <div class="project-footer">
+        <span style="font-size:0.8rem; color:var(--muted); font-family:var(--mono);">即將上線</span>
+        <span style="color:var(--muted);">→</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <p class="project-status">
+        <span class="status-dot status-wip"></span>進行中
+      </p>
+      <h3>Trading Dashboard</h3>
+      <p>整合 MACD 雙引擎策略的台指期貨與加密貨幣即時看板，支援多時間框架共振分析。</p>
+      <div class="service-tags" style="margin-top:1rem;">
+        <span class="tag">MACD</span>
+        <span class="tag">Real-time</span>
+        <span class="tag">Strategy</span>
+      </div>
+      <div class="project-footer">
+        <span style="font-size:0.8rem; color:var(--muted); font-family:var(--mono);">即將上線</span>
+        <span style="color:var(--muted);">→</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <p class="project-status">
+        <span class="status-dot status-live"></span>上線中
+      </p>
+      <h3>供應商稽查系統</h3>
+      <p>塑膠泡殼包裝產業供應商實地稽查工具，含 86 項稽查項目、自動評分與報告生成。</p>
+      <div class="service-tags" style="margin-top:1rem;">
+        <span class="tag">Excel</span>
+        <span class="tag">Python</span>
+        <span class="tag">Procurement</span>
+      </div>
+      <div class="project-footer">
+        <span style="font-size:0.8rem; color:var(--muted); font-family:var(--mono);">內部工具</span>
+        <span style="color:var(--muted);">→</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box fade-in">
+    <h2>開始一個新專案</h2>
+    <p>有想法想實現，或需要技術顧問？歡迎聯絡討論。</p>
+    <a class="contact-email" href="mailto:douzi0805@gmail.com">douzi0805@gmail.com</a>
+    <br><br>
+    <a href="mailto:douzi0805@gmail.com" class="btn btn-primary" style="margin-top:1rem;">
+      傳送訊息 →
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Douzi Studio. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="https://github.com" target="_blank">GitHub</a>
+    <a href="https://blog.douzistudio.com" target="_blank">Blog</a>
+    <a href="mailto:douzi0805@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  // 捲動淡入動畫
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // 導覽列捲動效果
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 20
+      ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.07)';
+  });
+</script>
+
+</body>
+</html>
