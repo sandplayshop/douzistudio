@@ -3,537 +3,386 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Douzi Studio — 網頁開發、AI 應用、交易系統、心理科技解決方案">
-  <title>Douzi Studio</title>
+  <meta name="description" content="Douzi Studio — 專業網頁系統開發工作室。品牌網站、課程平台、預約系統、交易工具、心理科技應用，從設計到上線一站搞定。">
+  <title>Douzi Studio — 網頁系統開發工作室</title>
   <style>
     :root {
-      --bg:        #080810;
-      --bg2:       #0e0e1a;
-      --bg3:       #14141f;
-      --border:    rgba(255,255,255,0.07);
-      --text:      #e8e8f2;
-      --muted:     #6b6b8a;
-      --accent:    #4fc3f7;
-      --accent2:   #7c4dff;
-      --glow:      rgba(79,195,247,0.15);
-      --font:      -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
-      --mono:      'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --bg:     #07070f;
+      --bg2:    #0d0d1a;
+      --bg3:    #131320;
+      --border: rgba(255,255,255,0.07);
+      --text:   #e8e8f2;
+      --muted:  #6b6b8a;
+      --accent: #4fc3f7;
+      --ac2:    #7c4dff;
+      --green:  #4caf50;
+      --amber:  #ffb74d;
+      --glow:   rgba(79,195,247,0.13);
+      --font:   -apple-system,'SF Pro Display','Helvetica Neue',Arial,sans-serif;
+      --mono:   'JetBrains Mono','Fira Code','Courier New',monospace;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ── Scrollbar ── */
+    body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.6; overflow-x: hidden; }
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-    /* ── Noise overlay ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      opacity: 0.4;
-    }
-
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 2.5rem;
-      background: rgba(8,8,16,0.85);
-      backdrop-filter: blur(16px);
+      padding: 1rem 2.5rem;
+      background: rgba(7,7,15,0.9); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-    }
-
-    .nav-logo span { color: var(--accent); }
-
-    .nav-links {
-      display: flex; gap: 2rem; list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
+    .logo { font-family: var(--mono); font-size: 1.05rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .83rem; letter-spacing: .05em; text-transform: uppercase; transition: color .2s; }
     .nav-links a:hover { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #07070f; font-weight: 700; font-size: .82rem; font-family: var(--mono); padding: .5rem 1.25rem; border-radius: 4px; text-decoration: none; letter-spacing: .04em; transition: all .2s; }
+    .nav-cta:hover { background: #81d4fa; transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* GRID BG */
+    .grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(79,195,247,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(79,195,247,.025) 1px,transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 90% 60% at 50% 20%, black 10%, transparent 75%);
+    }
+
+    /* HERO */
     #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: flex-start;
-      padding: 8rem 2.5rem 4rem;
-      max-width: 1100px; margin: 0 auto;
-      position: relative;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 8rem 2.5rem 5rem;
+      max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
     }
+    .hero-tag { font-family: var(--mono); font-size: .78rem; color: var(--accent); letter-spacing: .18em; text-transform: uppercase; display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; }
+    .hero-tag::before { content:''; width: 2rem; height: 1px; background: var(--accent); }
+    h1 { font-size: clamp(2.8rem,7vw,5.5rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 1.5rem; }
+    h1 em { font-style: normal; background: linear-gradient(135deg,var(--accent),var(--ac2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-desc { font-size: 1.1rem; color: var(--muted); max-width: 560px; line-height: 1.85; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    .hero-tag {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.75rem;
+    /* BTN */
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .875rem 2rem; border-radius: 4px; font-size: .9rem; font-family: var(--mono); letter-spacing: .04em; text-decoration: none; transition: all .2s; cursor: pointer; border: none; }
+    .btn-p { background: var(--accent); color: #07070f; font-weight: 700; }
+    .btn-p:hover { background: #81d4fa; transform: translateY(-1px); box-shadow: 0 8px 24px var(--glow); }
+    .btn-o { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-o:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* SECTION */
+    .sec { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; position: relative; z-index: 1; }
+    .sec-tag { font-family: var(--mono); font-size: .72rem; color: var(--accent); letter-spacing: .2em; text-transform: uppercase; margin-bottom: .6rem; }
+    .sec-title { font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: .75rem; }
+    .sec-desc { color: var(--muted); max-width: 560px; line-height: 1.8; margin-bottom: 3rem; }
+
+    /* CAPABILITIES */
+    .cap-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 1.25rem; }
+    .cap-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; transition: all .3s; position: relative; overflow: hidden; }
+    .cap-card::before { content:''; position: absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg,var(--accent),var(--ac2)); transform: scaleX(0); transition: transform .3s; }
+    .cap-card:hover { border-color: rgba(79,195,247,.2); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+    .cap-card:hover::before { transform: scaleX(1); }
+    .cap-icon { font-size: 1.6rem; margin-bottom: 1rem; display: block; }
+    .cap-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+    .cap-card p { font-size: .84rem; color: var(--muted); line-height: 1.7; }
+    .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+    .tag { font-family: var(--mono); font-size: .68rem; padding: .18rem .5rem; border-radius: 3px; background: rgba(79,195,247,.08); color: var(--accent); }
+
+    /* PACKAGES */
+    .pkg-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.25rem; }
+    .pkg-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.75rem; display: flex; flex-direction: column; transition: all .3s; position: relative; overflow: hidden; }
+    .pkg-card::before { content:''; position: absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg,var(--accent),var(--ac2)); transform: scaleX(0); transition: transform .3s; }
+    .pkg-card:hover { border-color: rgba(79,195,247,.2); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+    .pkg-card:hover::before { transform: scaleX(1); }
+    .pkg-card.featured { border-color: rgba(79,195,247,.18); background: linear-gradient(135deg,rgba(79,195,247,.04),rgba(124,77,255,.04)); }
+    .pkg-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .pkg-name { font-size: 1.05rem; font-weight: 700; margin-bottom: .45rem; }
+    .pkg-desc { font-size: .84rem; color: var(--muted); line-height: 1.7; flex: 1; }
+    .pkg-features { list-style: none; margin: 1rem 0; }
+    .pkg-features li { font-size: .8rem; color: var(--muted); padding: .22rem 0; display: flex; align-items: center; gap: .5rem; }
+    .pkg-features li::before { content:'✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .pkg-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+    .pkg-price .from { font-size: .68rem; color: var(--muted); font-family: var(--mono); display: block; }
+    .pkg-price .num { font-size: 1.1rem; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+    .pkg-btn { font-family: var(--mono); font-size: .75rem; color: var(--accent); background: rgba(79,195,247,.1); border: 1px solid rgba(79,195,247,.2); border-radius: 4px; padding: .4rem .9rem; text-decoration: none; transition: all .2s; cursor: pointer; }
+    .pkg-btn:hover { background: rgba(79,195,247,.2); }
+
+    /* PORTFOLIO */
+    .port-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 1rem; }
+    .port-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit; transition: all .25s; display: block; }
+    .port-card:hover { border-color: rgba(79,195,247,.25); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.4); }
+    .port-prev { height: 110px; background: linear-gradient(135deg,var(--bg3),var(--bg2)); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; border-bottom: 1px solid var(--border); }
+    .port-info { padding: 1.1rem 1.25rem; }
+    .port-name { font-size: .95rem; font-weight: 600; margin-bottom: .25rem; }
+    .port-type { font-family: var(--mono); font-size: .7rem; color: var(--accent); letter-spacing: .08em; }
+
+    /* PROCESS */
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 2rem; }
+    .step-num { font-family: var(--mono); font-size: 2.2rem; font-weight: 800; color: rgba(79,195,247,.2); line-height: 1; margin-bottom: .6rem; }
+    .step-title { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+    .step-desc { font-size: .84rem; color: var(--muted); line-height: 1.7; }
+
+    /* TECH */
+    .tech-row { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .tech { font-family: var(--mono); font-size: .78rem; padding: .4rem 1rem; border-radius: 4px; border: 1px solid var(--border); background: var(--bg2); color: var(--muted); transition: all .2s; }
+    .tech:hover { border-color: rgba(79,195,247,.3); color: var(--accent); }
+
+    /* FORM */
+    .form-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .full { grid-column: 1/-1; }
+    .field { display: flex; flex-direction: column; gap: .45rem; }
+    label { font-size: .8rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+    input, select, textarea {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text); font-family: var(--font); font-size: .9rem;
+      padding: .75rem 1rem; transition: border-color .2s; outline: none; width: 100%;
     }
+    input:focus, select:focus, textarea:focus { border-color: rgba(79,195,247,.4); box-shadow: 0 0 0 3px rgba(79,195,247,.07); }
+    select option { background: var(--bg2); }
+    textarea { resize: vertical; min-height: 110px; }
+    .form-foot { margin-top: 1.75rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .form-note { font-size: .8rem; color: var(--muted); }
+    #form-ok { display: none; margin-top: 1.25rem; background: rgba(76,175,80,.1); border: 1px solid rgba(76,175,80,.3); border-radius: 8px; padding: 1rem 1.5rem; color: var(--green); font-size: .9rem; }
 
-    .hero-tag::before {
-      content: '';
-      display: inline-block; width: 2rem; height: 1px;
-      background: var(--accent);
-    }
+    /* STATUS DOTS */
+    .dot-live { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); margin-right: 6px; }
+    .dot-wip  { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); margin-right: 6px; }
 
-    h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-    }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+    footer p { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+    .foot-links { display: flex; gap: 1.5rem; }
+    .foot-links a { color: var(--muted); text-decoration: none; font-size: .83rem; transition: color .2s; }
+    .foot-links a:hover { color: var(--accent); }
 
-    h1 .line2 {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    /* FADE */
+    .f { opacity: 0; transform: translateY(16px); transition: opacity .55s, transform .55s; }
+    .f.in { opacity: 1; transform: none; }
 
-    .hero-desc {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 540px;
-      margin-bottom: 3rem;
-      line-height: 1.8;
-    }
-
-    .hero-cta {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.875rem 2rem;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      font-family: var(--mono);
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #080810;
-      font-weight: 700;
-    }
-
-    .btn-primary:hover {
-      background: #81d4fa;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px var(--glow);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    /* 背景格線 */
-    .hero-grid {
-      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-      background-image:
-        linear-gradient(rgba(79,195,247,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79,195,247,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
-    }
-
-    /* ── SECTION 共用 ── */
-    section {
-      padding: 6rem 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-tag {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .section-desc {
-      color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 3.5rem;
-      line-height: 1.8;
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 2.5rem;
-    }
-
-    /* ── SERVICES ── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .service-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover {
-      border-color: rgba(79,195,247,0.25);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-    }
-
-    .service-card:hover::before { transform: scaleX(1); }
-
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .service-card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-      letter-spacing: -0.01em;
-    }
-
-    .service-card p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .service-tags {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin-top: 1.25rem;
-    }
-
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 3px;
-      background: rgba(79,195,247,0.1);
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── PROJECTS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .project-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
-      transition: all 0.3s;
-      display: flex; flex-direction: column;
-    }
-
-    .project-card:hover {
-      border-color: rgba(79,195,247,0.25);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-    }
-
-    .project-status {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-
-    .status-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      display: inline-block;
-    }
-
-    .status-live { background: #4caf50; box-shadow: 0 0 6px #4caf50; }
-    .status-wip  { background: #ff9800; }
-    .status-soon { background: var(--muted); }
-
-    .project-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-      letter-spacing: -0.01em;
-    }
-
-    .project-card p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.7;
-      flex: 1;
-    }
-
-    .project-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .project-link {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--accent);
-      text-decoration: none;
-      display: flex; align-items: center; gap: 0.3rem;
-      transition: gap 0.2s;
-    }
-
-    .project-link:hover { gap: 0.6rem; }
-
-    /* ── CONTACT ── */
-    #contact {
-      text-align: center;
-    }
-
-    .contact-box {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 4rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-box::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, var(--glow), transparent 70%);
-    }
-
-    .contact-box h2 {
-      font-size: clamp(1.5rem, 4vw, 2.25rem);
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      font-size: 1rem;
-    }
-
-    .contact-email {
-      font-family: var(--mono);
-      font-size: 1rem;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 2px;
-      transition: opacity 0.2s;
-    }
-
-    .contact-email:hover { opacity: 0.7; }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-
-    footer p {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer a:hover { color: var(--accent); }
-
-    .footer-links {
-      display: flex; gap: 1.5rem;
-    }
-
-    /* ── ANIMATIONS ── */
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1; transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
+    @media(max-width:768px) {
       nav { padding: 1rem 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      section { padding: 4rem 1.25rem; }
-      #hero { padding: 7rem 1.25rem 3rem; }
-      .contact-box { padding: 2.5rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 7rem 1.25rem 4rem; }
+      .sec { padding: 3.5rem 1.25rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-box { padding: 1.75rem 1.25rem; }
       footer { padding: 1.5rem 1.25rem; }
     }
   </style>
 </head>
 <body>
+<div class="grid-bg"></div>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Douzi<span>.</span>Studio</a>
+  <a class="logo" href="#">Douzi<span>.</span>Studio</a>
   <ul class="nav-links">
-    <li><a href="#services">服務</a></li>
-    <li><a href="#projects">專案</a></li>
-    <li><a href="#contact">聯絡</a></li>
+    <li><a href="#capabilities">專長</a></li>
+    <li><a href="#packages">服務方案</a></li>
+    <li><a href="#portfolio">作品集</a></li>
+    <li><a href="#process">流程</a></li>
+    <li><a href="#inquiry">需求單</a></li>
   </ul>
+  <a class="nav-cta" href="#inquiry">立即諮詢 →</a>
 </nav>
 
 <!-- HERO -->
-<div style="position:relative; overflow:hidden;">
-  <div class="hero-grid"></div>
-  <div id="hero">
-    <p class="hero-tag">Technology Studio</p>
-    <h1>
-      Build with<br>
-      <span class="line2">Purpose.</span>
-    </h1>
-    <p class="hero-desc">
-      結合網頁開發、AI 應用、交易系統與心理科技，<br>
-      為複雜問題設計精準的數位解決方案。
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">查看專案 →</a>
-      <a href="#contact" class="btn btn-outline">開始合作</a>
-    </div>
+<div id="hero">
+  <p class="hero-tag">Web System Studio · Taiwan</p>
+  <h1>打造你的<br><em>數位產品</em></h1>
+  <p class="hero-desc">
+    專業網頁系統開發工作室，結合 AI、心理科技與金融工具開發經驗。
+    從品牌網站到複雜的課程平台、預約系統、測驗工具，量身客製，從設計到上線一站搞定。
+  </p>
+  <div class="hero-btns">
+    <a href="#packages" class="btn btn-p">查看服務方案 →</a>
+    <a href="#inquiry" class="btn btn-o">提交需求單</a>
   </div>
 </div>
 
 <hr class="divider">
 
-<!-- SERVICES -->
-<section id="services">
-  <p class="section-tag">What I Do</p>
-  <h2 class="section-title">服務項目</h2>
-  <p class="section-desc">跨領域的技術能力，為不同產業提供客製化的數位解決方案。</p>
-  <div class="services-grid">
-
-    <div class="service-card fade-in">
-      <span class="service-icon">⬡</span>
-      <h3>網頁設計開發</h3>
-      <p>從視覺設計到全端開發，打造高效能、可擴展的網頁應用程式。</p>
-      <div class="service-tags">
-        <span class="tag">React</span>
-        <span class="tag">Python</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">WordPress</span>
-      </div>
+<!-- CAPABILITIES -->
+<section class="sec" id="capabilities">
+  <p class="sec-tag">Expertise</p>
+  <h2 class="sec-title">核心專長</h2>
+  <p class="sec-desc">跨領域技術能力，為不同產業提供精準的數位解決方案。</p>
+  <div class="cap-grid">
+    <div class="cap-card f">
+      <span class="cap-icon">⬡</span>
+      <h3>網頁系統開發</h3>
+      <p>從視覺設計到全端開發，打造高效能、可擴展的網頁應用程式與系統。</p>
+      <div class="tags"><span class="tag">React</span><span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">WordPress</span></div>
     </div>
-
-    <div class="service-card fade-in">
-      <span class="service-icon">◈</span>
-      <h3>AI 應用程式</h3>
-      <p>整合大型語言模型，開發智慧化工具、教育平台與自動化系統。</p>
-      <div class="service-tags">
-        <span class="tag">Claude API</span>
-        <span class="tag">GPT</span>
-        <span class="tag">RAG</span>
-        <span class="tag">Prompt Eng.</span>
-      </div>
+    <div class="cap-card f">
+      <span class="cap-icon">◈</span>
+      <h3>AI 應用整合</h3>
+      <p>整合大型語言模型，開發智慧化工具、評估平台與 AI 自動化系統。</p>
+      <div class="tags"><span class="tag">Claude API</span><span class="tag">GPT</span><span class="tag">RAG</span><span class="tag">Prompt Eng.</span></div>
     </div>
-
-    <div class="service-card fade-in">
-      <span class="service-icon">◎</span>
-      <h3>交易系統工具</h3>
-      <p>開發技術分析工具、自動化策略與即時數據視覺化交易輔助系統。</p>
-      <div class="service-tags">
-        <span class="tag">MACD</span>
-        <span class="tag">TW Futures</span>
-        <span class="tag">Crypto</span>
-        <span class="tag">Backtesting</span>
-      </div>
+    <div class="cap-card f">
+      <span class="cap-icon">◎</span>
+      <h3>金融科技工具</h3>
+      <p>開發技術分析工具、即時數據儀表板與交易策略自動化系統。</p>
+      <div class="tags"><span class="tag">MACD</span><span class="tag">WebSocket</span><span class="tag">Crypto</span><span class="tag">TW Futures</span></div>
     </div>
-
-    <div class="service-card fade-in">
-      <span class="service-icon">◇</span>
+    <div class="cap-card f">
+      <span class="cap-icon">◇</span>
       <h3>心理科技應用</h3>
       <p>結合心理學專業，開發沙盤治療平台、臨床記錄系統與心理測驗工具。</p>
-      <div class="service-tags">
-        <span class="tag">Sandplay</span>
-        <span class="tag">Clinical AI</span>
-        <span class="tag">Assessment</span>
+      <div class="tags"><span class="tag">Sandplay</span><span class="tag">Clinical AI</span><span class="tag">Assessment</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PACKAGES -->
+<section class="sec" id="packages">
+  <p class="sec-tag">Service Packages</p>
+  <h2 class="sec-title">服務方案</h2>
+  <p class="sec-desc">常用系統已有成熟模板可快速交付。有特殊需求歡迎填寫需求單，依複雜度報價。</p>
+  <div class="pkg-grid">
+
+    <div class="pkg-card f">
+      <div class="pkg-icon">◈</div>
+      <div class="pkg-name">品牌靜態網頁</div>
+      <div class="pkg-desc">視覺精緻、載入快速的品牌形象網站，適合工作室、個人品牌、產品展示。</div>
+      <ul class="pkg-features">
+        <li>5–8 個設計區塊</li>
+        <li>RWD 手機版優化</li>
+        <li>SEO 基礎設定</li>
+        <li>聯絡表單整合</li>
+        <li>部署上線</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">起始報價</span><span class="num">NT$ 8,000</span></div>
+        <button class="pkg-btn" data-type="品牌靜態網頁">諮詢此方案</button>
+      </div>
+    </div>
+
+    <div class="pkg-card f">
+      <div class="pkg-icon">⬡</div>
+      <div class="pkg-name">一頁式銷售頁</div>
+      <div class="pkg-desc">專為轉換率優化的 Landing Page，適合產品發表、課程招生、活動報名。</div>
+      <ul class="pkg-features">
+        <li>高轉換率設計邏輯</li>
+        <li>CTA 按鈕優化</li>
+        <li>表單 / 報名整合</li>
+        <li>Google Analytics 追蹤</li>
+        <li>A/B 測試建議</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">起始報價</span><span class="num">NT$ 6,000</span></div>
+        <button class="pkg-btn" data-type="一頁式銷售頁">諮詢此方案</button>
+      </div>
+    </div>
+
+    <div class="pkg-card f">
+      <div class="pkg-icon">◎</div>
+      <div class="pkg-name">品牌網站 + 後端管理</div>
+      <div class="pkg-desc">具備後台管理的完整品牌網站，可自行更新內容、文章、產品，適合長期經營。</div>
+      <ul class="pkg-features">
+        <li>後台內容管理系統</li>
+        <li>部落格 / 文章功能</li>
+        <li>會員基礎功能</li>
+        <li>SEO 完整優化</li>
+        <li>6個月技術支援</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">起始報價</span><span class="num">NT$ 25,000</span></div>
+        <button class="pkg-btn" data-type="品牌網站+後端">諮詢此方案</button>
+      </div>
+    </div>
+
+    <div class="pkg-card f">
+      <div class="pkg-icon">◷</div>
+      <div class="pkg-name">線上預約系統</div>
+      <div class="pkg-desc">適合診所、諮詢師、美容、教練等服務型業者，自動化管理預約時段。</div>
+      <ul class="pkg-features">
+        <li>日曆時段管理</li>
+        <li>自動 Email / LINE 通知</li>
+        <li>客戶資料管理</li>
+        <li>付款整合（選配）</li>
+        <li>後台管理介面</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">起始報價</span><span class="num">NT$ 30,000</span></div>
+        <button class="pkg-btn" data-type="線上預約系統">諮詢此方案</button>
+      </div>
+    </div>
+
+    <div class="pkg-card f">
+      <div class="pkg-icon">▣</div>
+      <div class="pkg-name">線上課程平台</div>
+      <div class="pkg-desc">完整的課程銷售與學習平台，支援影片課程、章節管理、學員進度追蹤、付款收費。</div>
+      <ul class="pkg-features">
+        <li>課程章節管理</li>
+        <li>學員帳號系統</li>
+        <li>進度追蹤 & 測驗</li>
+        <li>付款 & 訂閱整合</li>
+        <li>結業證書（選配）</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">起始報價</span><span class="num">NT$ 45,000</span></div>
+        <button class="pkg-btn" data-type="線上課程平台">諮詢此方案</button>
+      </div>
+    </div>
+
+    <div class="pkg-card f">
+      <div class="pkg-icon">◉</div>
+      <div class="pkg-name">測驗 / 刷題系統</div>
+      <div class="pkg-desc">題庫管理、練習測驗、成績分析。可用於證照備考、心理測評、企業培訓。參考 AIPass 範例。</div>
+      <ul class="pkg-features">
+        <li>題庫匯入管理</li>
+        <li>多題型支援</li>
+        <li>即時成績分析</li>
+        <li>錯題本功能</li>
+        <li>後台出題管理</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">起始報價</span><span class="num">NT$ 28,000</span></div>
+        <button class="pkg-btn" data-type="測驗刷題系統">諮詢此方案</button>
+      </div>
+    </div>
+
+    <div class="pkg-card f">
+      <div class="pkg-icon">◇</div>
+      <div class="pkg-name">白標系統部署</div>
+      <div class="pkg-desc">將現有成熟系統（線上沙盤、測驗平台等）以您的品牌重新部署，快速擁有自己的平台。</div>
+      <ul class="pkg-features">
+        <li>品牌客製化（Logo/色系）</li>
+        <li>專屬網域部署</li>
+        <li>資料庫獨立建立</li>
+        <li>管理員帳號移交</li>
+        <li>使用教學 & 維護合約</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">起始報價</span><span class="num">NT$ 20,000</span></div>
+        <button class="pkg-btn" data-type="白標系統部署">諮詢此方案</button>
+      </div>
+    </div>
+
+    <div class="pkg-card featured f">
+      <div class="pkg-icon">⚡</div>
+      <div class="pkg-name">全客製系統開發</div>
+      <div class="pkg-desc">有獨特需求？從零規劃、設計、開發，使用 React、Python、Supabase 等現代技術堆疊，原始碼完整交付。</div>
+      <ul class="pkg-features">
+        <li>需求訪談 & 系統規劃</li>
+        <li>UI/UX 原型設計</li>
+        <li>前後端完整開發</li>
+        <li>測試 & 部署上線</li>
+        <li>原始碼 & 文件交付</li>
+      </ul>
+      <div class="pkg-footer">
+        <div class="pkg-price"><span class="from">依需求評估</span><span class="num">歡迎詢價</span></div>
+        <button class="pkg-btn" data-type="全客製系統開發">提交需求單</button>
       </div>
     </div>
 
@@ -542,83 +391,64 @@
 
 <hr class="divider">
 
-<!-- PROJECTS -->
-<section id="projects">
-  <p class="section-tag">Portfolio</p>
-  <h2 class="section-title">近期專案</h2>
-  <p class="section-desc">持續開發中的作品，每個專案都在解決一個真實的問題。</p>
-  <div class="projects-grid">
+<!-- PORTFOLIO -->
+<section class="sec" id="portfolio">
+  <p class="sec-tag">Live Demos</p>
+  <h2 class="sec-title">作品集</h2>
+  <p class="sec-desc">以下為已上線的真實系統，點擊可直接體驗功能。</p>
+  <div class="port-grid">
 
-    <div class="project-card fade-in">
-      <p class="project-status">
-        <span class="status-dot status-live"></span>上線中
-      </p>
-      <h3>Online Sandtray</h3>
-      <p>線上沙盤治療平台，讓心理師與個案在遠端進行沙遊治療，支援多元沙具庫與療程記錄。</p>
-      <div class="service-tags" style="margin-top:1rem;">
-        <span class="tag">React</span>
-        <span class="tag">Psychology</span>
-        <span class="tag">Therapy</span>
+    <a class="port-card f" href="https://sandtray.douzistudio.com" target="_blank">
+      <div class="port-prev">🏖️</div>
+      <div class="port-info">
+        <div class="port-name">線上沙盤治療系統</div>
+        <div class="port-type"><span class="dot-live"></span>上線中 · 心理治療平台</div>
+        <div class="tags" style="margin-top:.6rem;"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">會員系統</span></div>
       </div>
-      <div class="project-footer">
-        <a href="https://sandtray.douzistudio.com" target="_blank" class="project-link">前往專案 →</a>
-        <div class="service-tags">
-          <span class="tag">TypeScript</span>
-          <span class="tag">Supabase</span>
-        </div>
-      </div>
-    </div>
+    </a>
 
-    <div class="project-card fade-in">
-      <p class="project-status">
-        <span class="status-dot status-wip"></span>進行中
-      </p>
-      <h3>AI 應用規劃師</h3>
-      <p>協助企業與個人規劃 AI 導入策略的互動式評估工具，提供客製化的 AI 應用路徑建議。</p>
-      <div class="service-tags" style="margin-top:1rem;">
-        <span class="tag">AI</span>
-        <span class="tag">Education</span>
-        <span class="tag">Assessment</span>
+    <a class="port-card f" href="https://trading.douzistudio.com" target="_blank">
+      <div class="port-prev">📈</div>
+      <div class="port-info">
+        <div class="port-name">牛轉門交易工具 Hub</div>
+        <div class="port-type"><span class="dot-live"></span>上線中 · 金融科技儀表板</div>
+        <div class="tags" style="margin-top:.6rem;"><span class="tag">WebSocket</span><span class="tag">K線圖</span><span class="tag">即時數據</span></div>
       </div>
-      <div class="project-footer">
-        <span style="font-size:0.8rem; color:var(--muted); font-family:var(--mono);">即將上線</span>
-        <span style="color:var(--muted);">→</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="project-card fade-in">
-      <p class="project-status">
-        <span class="status-dot status-live"></span>上線中
-      </p>
-      <h3>Trading Dashboard Hub</h3>
-      <p>整合 MACD 雙引擎策略的台指期貨與加密貨幣即時看板，支援多時間框架共振分析。</p>
-      <div class="service-tags" style="margin-top:1rem;">
-        <span class="tag">MACD</span>
-        <span class="tag">Real-time</span>
-        <span class="tag">Strategy</span>
+    <a class="port-card f" href="https://aipassoriginal.netlify.app" target="_blank">
+      <div class="port-prev">🧠</div>
+      <div class="port-info">
+        <div class="port-name">AIPass 測驗系統</div>
+        <div class="port-type"><span class="dot-live"></span>上線中 · 教育科技平台</div>
+        <div class="tags" style="margin-top:.6rem;"><span class="tag">題庫管理</span><span class="tag">AI</span><span class="tag">成績分析</span></div>
       </div>
-      <div class="project-footer">
-        <a href="https://trading.douzistudio.com" target="_blank" class="project-link">前往專案 →</a>
-        <div class="service-tags">
-          <span class="tag">WebSocket</span>
-        </div>
-      </div>
-    </div>
+    </a>
 
-    <div class="project-card fade-in">
-      <p class="project-status">
-        <span class="status-dot status-live"></span>上線中
-      </p>
-      <h3>供應商稽查系統</h3>
-      <p>塑膠泡殼包裝產業供應商實地稽查工具，含 86 項稽查項目、自動評分與報告生成。</p>
-      <div class="service-tags" style="margin-top:1rem;">
-        <span class="tag">Excel</span>
-        <span class="tag">Python</span>
-        <span class="tag">Procurement</span>
+    <a class="port-card f" href="https://my-personality-quiz.netlify.app" target="_blank">
+      <div class="port-prev">✦</div>
+      <div class="port-info">
+        <div class="port-name">人格測驗系統</div>
+        <div class="port-type"><span class="dot-live"></span>上線中 · 心理評估工具</div>
+        <div class="tags" style="margin-top:.6rem;"><span class="tag">Firebase</span><span class="tag">測驗流程</span><span class="tag">結果分析</span></div>
       </div>
-      <div class="project-footer">
-        <span style="font-size:0.8rem; color:var(--muted); font-family:var(--mono);">內部工具</span>
-        <span style="color:var(--muted);">→</span>
+    </a>
+
+    <a class="port-card f" href="https://trading2026.netlify.app" target="_blank">
+      <div class="port-prev">⚡</div>
+      <div class="port-info">
+        <div class="port-name">Trading 2026 旗艦版</div>
+        <div class="port-type"><span class="dot-live"></span>上線中 · 交易策略工具</div>
+        <div class="tags" style="margin-top:.6rem;"><span class="tag">輕量圖表</span><span class="tag">MACD</span><span class="tag">即時</span></div>
+      </div>
+    </a>
+
+    <div class="port-card f" style="cursor:default;">
+      <div class="port-prev" style="font-size:1.5rem;color:var(--muted);">更多專案<br>陸續上線</div>
+      <div class="port-info">
+        <div class="port-name" style="color:var(--muted);">AI 應用規劃師 / 預約系統 …</div>
+        <div class="port-type"><span class="dot-wip"></span>開發中</div>
+        <div class="tags" style="margin-top:.6rem;"><span class="tag">Course Platform</span><span class="tag">Booking</span></div>
       </div>
     </div>
 
@@ -627,55 +457,191 @@
 
 <hr class="divider">
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-box fade-in">
-    <h2>開始一個新專案</h2>
-    <p>有想法想實現，或需要技術顧問？提交需求單或直接聯絡討論。</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
-      <a href="https://studio.douzistudio.com#inquiry" class="btn btn-primary">
-        提交需求單 →
-      </a>
-      <a href="mailto:douzi0805@gmail.com" class="btn btn-outline" style="border-color:rgba(255,255,255,0.15);color:var(--text);">
-        直接寄信
-      </a>
+<!-- PROCESS -->
+<section class="sec" id="process">
+  <p class="sec-tag">How It Works</p>
+  <h2 class="sec-title">合作流程</h2>
+  <p class="sec-desc">從需求到上線，清楚透明的開發流程，無隱藏費用。</p>
+  <div class="process-grid">
+    <div class="f">
+      <div class="step-num">01</div>
+      <div class="step-title">填寫需求單</div>
+      <div class="step-desc">描述專案類型、功能需求、預算與時間，我們會在 1 個工作天內回覆。</div>
     </div>
-    <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--muted);">
-      或前往 <a href="https://studio.douzistudio.com" style="color:var(--accent);text-decoration:none;">studio.douzistudio.com</a> 查看完整服務方案
-    </p>
+    <div class="f">
+      <div class="step-num">02</div>
+      <div class="step-title">需求訪談 & 報價</div>
+      <div class="step-desc">視訊或文字討論細節，確認功能範圍後提供正式報價單。</div>
+    </div>
+    <div class="f">
+      <div class="step-num">03</div>
+      <div class="step-title">設計 & 開發</div>
+      <div class="step-desc">依確認規格進行開發，定期同步進度，重要節點提供預覽版本。</div>
+    </div>
+    <div class="f">
+      <div class="step-num">04</div>
+      <div class="step-title">測試 & 交付</div>
+      <div class="step-desc">完整測試後部署上線，移交管理權限、原始碼與操作文件。</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TECH -->
+<section class="sec">
+  <p class="sec-tag">Tech Stack</p>
+  <h2 class="sec-title">技術能力</h2>
+  <p class="sec-desc">使用現代化技術堆疊，確保系統效能、安全性與可維護性。</p>
+  <div class="tech-row">
+    <span class="tech">React / TypeScript</span><span class="tech">Python / FastAPI</span>
+    <span class="tech">Supabase</span><span class="tech">Node.js</span>
+    <span class="tech">WordPress</span><span class="tech">Vite</span>
+    <span class="tech">Tailwind CSS</span><span class="tech">PostgreSQL</span>
+    <span class="tech">MySQL</span><span class="tech">Cloudflare Tunnel</span>
+    <span class="tech">Linux Server</span><span class="tech">Stripe / ECPay</span>
+    <span class="tech">Claude API</span><span class="tech">Netlify / GitHub</span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- INQUIRY -->
+<section class="sec" id="inquiry">
+  <p class="sec-tag">Service Request</p>
+  <h2 class="sec-title">服務需求單</h2>
+  <p class="sec-desc">填寫需求單後，我們將在 1 個工作天內聯繫您，提供初步建議與報價。初步諮詢完全免費。</p>
+
+  <div class="form-box f">
+    <form id="inquiry-form">
+      <div class="form-grid">
+
+        <div class="field">
+          <label>您的姓名 *</label>
+          <input type="text" name="name" placeholder="王小明" required>
+        </div>
+        <div class="field">
+          <label>聯絡 Email *</label>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="field">
+          <label>公司 / 品牌名稱</label>
+          <input type="text" name="company" placeholder="您的工作室或公司名稱">
+        </div>
+        <div class="field">
+          <label>服務類型 *</label>
+          <select name="service" id="service-select" required>
+            <option value="">— 請選擇 —</option>
+            <option value="品牌靜態網頁">品牌靜態網頁（NT$8,000 起）</option>
+            <option value="一頁式銷售頁">一頁式銷售頁（NT$6,000 起）</option>
+            <option value="品牌網站+後端">品牌網站 + 後端管理（NT$25,000 起）</option>
+            <option value="線上預約系統">線上預約系統（NT$30,000 起）</option>
+            <option value="線上課程平台">線上課程平台（NT$45,000 起）</option>
+            <option value="測驗刷題系統">測驗 / 刷題系統（NT$28,000 起）</option>
+            <option value="白標系統部署">白標系統部署（NT$20,000 起）</option>
+            <option value="全客製系統開發">全客製系統開發（依需求）</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>預算範圍</label>
+          <select name="budget">
+            <option value="">— 請選擇 —</option>
+            <option>NT$10,000 以下</option>
+            <option>NT$10,000 – 30,000</option>
+            <option>NT$30,000 – 60,000</option>
+            <option>NT$60,000 – 100,000</option>
+            <option>NT$100,000 以上</option>
+            <option>希望先討論</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>希望完成時間</label>
+          <select name="timeline">
+            <option value="">— 請選擇 —</option>
+            <option>越快越好（1個月內）</option>
+            <option>1–2 個月</option>
+            <option>2–3 個月</option>
+            <option>時間彈性</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label>專案描述 *</label>
+          <textarea name="description" placeholder="請描述您的專案需求、目標用戶、主要功能，或附上參考範例..." required></textarea>
+        </div>
+        <div class="field full">
+          <label>參考網站 / 靈感來源</label>
+          <input type="text" name="reference" placeholder="https://example.com（選填）">
+        </div>
+
+      </div>
+      <div class="form-foot">
+        <button type="submit" class="btn btn-p">送出需求單 →</button>
+        <p class="form-note">送出後 1 個工作天內回覆 · 初步諮詢免費</p>
+      </div>
+      <div id="form-ok">✓ 需求單已送出！我們將在 1 個工作天內透過 Email 與您聯繫。</div>
+    </form>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Douzi Studio. All rights reserved.</p>
-  <div class="footer-links">
-    <a href="https://studio.douzistudio.com" target="_blank">Studio</a>
-    <a href="https://trading.douzistudio.com" target="_blank">Trading</a>
-    <a href="https://blog.douzistudio.com" target="_blank">Blog</a>
+  <div class="foot-links">
+    <a href="https://trading.douzistudio.com">Trading Hub</a>
+    <a href="https://sandtray.douzistudio.com">Sandtray</a>
+    <a href="https://blog.douzistudio.com">Blog</a>
     <a href="mailto:douzi0805@gmail.com">Email</a>
   </div>
 </footer>
 
 <script>
-  // 捲動淡入動畫
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      }
+  // 捲動淡入
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 70);
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.f').forEach(el => obs.observe(el));
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // 導覽列捲動效果
+  // 導覽列滾動效果
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     nav.style.borderBottomColor = window.scrollY > 20
-      ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.07)';
+      ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.07)';
+  });
+
+  // 方案按鈕 → 自動填入服務類型 + 跳到表單
+  document.querySelectorAll('.pkg-btn[data-type]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sel = document.getElementById('service-select');
+      const target = btn.dataset.type;
+      for (let opt of sel.options) {
+        if (opt.value.startsWith(target.split('（')[0].trim())) { sel.value = opt.value; break; }
+      }
+      document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // 表單送出
+  document.getElementById('inquiry-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '送出中...'; btn.disabled = true;
+    const data = Object.fromEntries(new FormData(e.target));
+    try {
+      const res = await fetch('/api/inquiry', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+      if (!res.ok) throw new Error();
+    } catch {
+      const sub = encodeURIComponent(`[需求單] ${data.service||'客製'} - ${data.name}`);
+      const body = encodeURIComponent(`姓名：${data.name}\nEmail：${data.email}\n公司：${data.company||'未填'}\n服務：${data.service}\n預算：${data.budget}\n時間：${data.timeline}\n\n描述：\n${data.description}`);
+      window.open(`mailto:douzi0805@gmail.com?subject=${sub}&body=${body}`);
+    }
+    document.getElementById('form-ok').style.display = 'block';
+    e.target.reset();
+    document.getElementById('form-ok').scrollIntoView({ behavior: 'smooth' });
+    btn.textContent = '送出需求單 →'; btn.disabled = false;
   });
 </script>
-
 </body>
 </html>
