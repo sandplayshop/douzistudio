@@ -154,12 +154,27 @@
     .dot-live { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); margin-right: 6px; }
     .dot-wip  { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); margin-right: 6px; }
 
+    /* CONTACT SECTION */
+    .contact-section { border-top: 1px solid var(--border); padding: 4rem 2.5rem; position: relative; z-index: 1; }
+    .contact-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem; }
+    .contact-section .sub { color: var(--muted); font-size: .9rem; margin-bottom: 2.5rem; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: border-color .2s; }
+    .contact-card:hover { border-color: var(--accent); }
+    .contact-card a { text-decoration: none; color: inherit; display: flex; align-items: flex-start; gap: 1rem; width: 100%; }
+    .contact-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: .1rem; }
+    .contact-info p { margin: 0; }
+    .contact-label { font-size: .7rem; color: var(--muted); font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3rem; }
+    .contact-value { font-size: .9rem; font-weight: 600; color: var(--fg); margin-bottom: .2rem; }
+    .contact-note { font-size: .78rem; color: var(--muted); }
+
     /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
     footer p { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
     .foot-links { display: flex; gap: 1.5rem; }
     .foot-links a { color: var(--muted); text-decoration: none; font-size: .83rem; transition: color .2s; }
     .foot-links a:hover { color: var(--accent); }
+    .foot-company { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
 
     /* FADE */
     .f { opacity: 0; transform: translateY(16px); transition: opacity .55s, transform .55s; }
@@ -428,12 +443,12 @@
       </div>
     </a>
 
-    <a class="port-card f" href="https://my-personality-quiz.netlify.app" target="_blank">
-      <div class="port-prev">✦</div>
+    <a class="port-card f" href="https://soul.douzistudio.com/" target="_blank">
+      <div class="port-prev">🔮</div>
       <div class="port-info">
-        <div class="port-name">人格測驗系統</div>
-        <div class="port-type"><span class="dot-live"></span>上線中 · 心理評估工具</div>
-        <div class="tags" style="margin-top:.6rem;"><span class="tag">Firebase</span><span class="tag">測驗流程</span><span class="tag">結果分析</span></div>
+        <div class="port-name">Soul Alchemy 靈魂煉金術</div>
+        <div class="port-type"><span class="dot-live"></span>上線中 · 榮格原型心理測驗</div>
+        <div class="tags" style="margin-top:.6rem;"><span class="tag">React</span><span class="tag">沙遊治療</span><span class="tag">ECPay</span><span class="tag">PayPal</span></div>
       </div>
     </a>
 
@@ -469,7 +484,7 @@
     <div class="f">
       <div class="step-num">01</div>
       <div class="step-title">填寫需求單</div>
-      <div class="step-desc">描述專案類型、功能需求、預算與時間，我們會在 1 個工作天內回覆。</div>
+      <div class="step-desc">描述專案類型、功能需求、預算與時間，我們會在 1–3 個工作天內回覆。</div>
     </div>
     <div class="f">
       <div class="step-num">02</div>
@@ -513,7 +528,7 @@
 <section class="sec" id="inquiry">
   <p class="sec-tag">Service Request</p>
   <h2 class="sec-title">服務需求單</h2>
-  <p class="sec-desc">填寫需求單後，我們將在 1 個工作天內聯繫您，提供初步建議與報價。初步諮詢完全免費。</p>
+  <p class="sec-desc">填寫需求單後，我們將在 1–3 個工作天內聯繫您，提供初步建議與報價。初步諮詢完全免費。</p>
 
   <div class="form-box f">
     <form id="inquiry-form">
@@ -580,21 +595,69 @@
       </div>
       <div class="form-foot">
         <button type="submit" class="btn btn-p">送出需求單 →</button>
-        <p class="form-note">送出後 1 個工作天內回覆 · 初步諮詢免費</p>
+        <p class="form-note">送出後 1–3 個工作天內回覆 · 初步諮詢免費</p>
       </div>
-      <div id="form-ok">✓ 需求單已送出！我們將在 1 個工作天內透過 Email 與您聯繫。</div>
+      <div id="form-ok">✓ 需求單已送出！我們將在 1–3 個工作天內透過 Email 與您聯繫。</div>
     </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <h2>聯繫我們</h2>
+  <p class="sub">有任何問題，歡迎透過以下方式與我們聯繫</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <a href="mailto:contact@douzistudio.com">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-info">
+          <p class="contact-label">Email 客服</p>
+          <p class="contact-value">contact@douzistudio.com</p>
+          <p class="contact-note">通常於 1–3 個工作天內回覆</p>
+        </div>
+      </a>
+    </div>
+    <div class="contact-card">
+      <a href="https://lin.ee/Q0i2wZN" target="_blank" rel="noopener">
+        <span class="contact-icon">💬</span>
+        <div class="contact-info">
+          <p class="contact-label">LINE 官方帳號</p>
+          <p class="contact-value">@sanplay</p>
+          <p class="contact-note">搜尋 @sanplay 或點此加入</p>
+        </div>
+      </a>
+    </div>
+    <div class="contact-card">
+      <a href="tel:+886970191238">
+        <span class="contact-icon">📞</span>
+        <div class="contact-info">
+          <p class="contact-label">電話</p>
+          <p class="contact-value">+886 970-191-238</p>
+          <p class="contact-note">&nbsp;</p>
+        </div>
+      </a>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">📍</span>
+      <div class="contact-info">
+        <p class="contact-label">地址</p>
+        <p class="contact-value">沙遊心藝工作室</p>
+        <p class="contact-note">100 台北市中正區衡陽路 36 號 8 樓之 3</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Douzi Studio. All rights reserved.</p>
+  <div>
+    <p>© 2026 Douzi Studio · 沙遊心藝工作室　統一編號：76392596</p>
+  </div>
   <div class="foot-links">
     <a href="https://trading.douzistudio.com">Trading Hub</a>
     <a href="https://sandtray.douzistudio.com">Sandtray</a>
     <a href="https://blog.douzistudio.com">Blog</a>
-    <a href="mailto:douzi0805@gmail.com">Email</a>
+    <a href="#contact">聯繫我們</a>
   </div>
 </footer>
 
