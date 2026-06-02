@@ -278,11 +278,17 @@ footer{margin-top:90px; border-top:1px solid var(--line); padding:54px 0 60px}
 .hut-card h4{font-family:"Noto Serif TC",serif; font-weight:700; font-size:1.08rem; margin:0; color:var(--ink)}
 .hut-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin:9px 0 0}
 .hut-card .go{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:13px; font-weight:500}
-/* 手機:小屋卡改成從底部滑上的固定卡片,避免被地景 overflow 切掉 */
+/* 手機:介紹就地在地景下方展開的乾淨面板(不浮、不蓋、不切) */
+.hut-panel{display:none}
 @media(max-width:720px){
-  .hut-card{position:fixed!important; left:14px!important; right:14px!important; bottom:16px!important; top:auto!important; width:auto!important; max-width:none!important; z-index:60; padding:17px 18px 18px; transform:translateY(130%); box-shadow:0 18px 50px -18px rgba(74,58,40,.6)}
-  .hut-card.show{transform:translateY(0)!important}
-  .hut-card p{font-size:14px}
+  .hut-card{display:none!important}
+  .hut-panel{display:block; margin-top:14px; background:var(--paper2); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-sm); max-height:0; opacity:0; overflow:hidden; padding:0 18px; transition:max-height .42s cubic-bezier(.2,.8,.2,1), opacity .3s ease, padding .42s ease}
+  .hut-panel.show{max-height:340px; opacity:1; padding:18px}
+  .hut-panel .hc-top{display:flex; align-items:center; gap:9px}
+  .hut-panel .dot{width:10px; height:10px; border-radius:50%; flex:none}
+  .hut-panel h4{font-family:"Noto Serif TC",serif; font-weight:700; font-size:1.12rem; margin:0; color:var(--ink)}
+  .hut-panel p{font-size:14px; color:var(--ink-soft); line-height:1.75; margin:10px 0 16px}
+  .hut-panel .go{display:inline-flex; align-items:center; gap:7px; padding:11px 20px; border-radius:30px; font-size:14px; font-weight:600; text-decoration:none; background:var(--rc,#9c5f38); color:#fff!important}
 }
 .hint{margin-top:16px; font-size:13px; color:var(--muted); text-align:center}
 .cloud{animation:drift 28s ease-in-out infinite}
@@ -1278,7 +1284,8 @@ footer{margin-top:90px; border-top:1px solid var(--line); padding:54px 0 60px}
     </svg>
     <div class="hut-card" id="hutCard"></div>
     </div>
-    <p class="hint">滑過(電腦)或點一下(手機)任何一間小屋,看看裡面。</p>
+    <div class="hut-panel" id="hutPanel"></div>
+    <p class="hint">電腦:滑過小屋預覽、點一下進入;手機:點小屋,介紹就在下面展開。</p>
   </div>
 </section>
 
@@ -1538,17 +1545,22 @@ const ROOMS={
   play:{name:'創意靈感屋',desc:'畫畫、塗鴉、木工、沙遊小物、把想法做成能用的東西——讓靈感落地。',color:'#cf9a3e',link:'studio.html',go:'去造物坊看看'},
   grow:{name:'共學成長實驗小屋',desc:'一起學、一起長、一起試——陪跑、線上課程、工作坊,都在這裡開門。',color:'#c2a14a',link:'grow.html',go:'認識陪跑'}
 };
-const land=document.querySelector('.land'),hcard=document.getElementById('hutCard');
-let huPinned=false;
-function huFill(k){const r=ROOMS[k];if(!r)return;hcard.innerHTML='<div class="hc-top"><span class="dot" style="background:'+r.color+'"></span><h4>'+r.name+'</h4></div><p>'+r.desc+'</p><a class="go" href="'+r.link+'" style="color:'+r.color+'">'+(r.go||'進入')+' <span>→</span></a>';}
+const land=document.querySelector('.land'),hcard=document.getElementById('hutCard'),hpanel=document.getElementById('hutPanel');
+const huTouch=matchMedia('(hover:none)').matches;
+function cardHTML(r){return '<div class="hc-top"><span class="dot" style="background:'+r.color+'"></span><h4>'+r.name+'</h4></div><p>'+r.desc+'</p><a class="go" href="'+r.link+'" style="--rc:'+r.color+';color:var(--rc)">'+(r.go||'進入')+' <span>→</span></a>';}
+function huFill(k){const r=ROOMS[k];if(!r)return;hcard.innerHTML=cardHTML(r);}
 function huPlace(hut){const hr=hut.getBoundingClientRect(),fr=land.getBoundingClientRect();let x=hr.left-fr.left+hr.width/2-hcard.offsetWidth/2;let y=hr.top-fr.top-hcard.offsetHeight-12;x=Math.max(8,Math.min(x,fr.width-hcard.offsetWidth-8));if(y<8)y=hr.bottom-fr.top+12;hcard.style.left=x+'px';hcard.style.top=y+'px';}
 function huShow(hut){huFill(hut.dataset.room);hcard.classList.add('show');huPlace(hut);}
 if(land){document.querySelectorAll('.hut').forEach(function(hut){
-  hut.addEventListener('mouseenter',function(){if(!huPinned)huShow(hut);});
-  hut.addEventListener('mouseleave',function(){if(!huPinned)hcard.classList.remove('show');});
-  hut.addEventListener('click',function(e){e.stopPropagation();huPinned=true;huShow(hut);});
-});
-document.addEventListener('click',function(){huPinned=false;hcard.classList.remove('show');});}
+  hut.addEventListener('mouseenter',function(){if(!huTouch)huShow(hut);});
+  hut.addEventListener('mouseleave',function(){hcard.classList.remove('show');});
+  hut.addEventListener('click',function(e){
+    e.stopPropagation();
+    var r=ROOMS[hut.dataset.room]; if(!r)return;
+    if(huTouch){ if(hpanel){ hpanel.innerHTML=cardHTML(r); hpanel.classList.add('show'); hpanel.scrollIntoView({behavior:'smooth',block:'nearest'}); } }
+    else { window.location.href=r.link; }
+  });
+});}
 
 // Hero 依台北時間顯示此刻時辰(可手動切換)
 (function(){
