@@ -220,20 +220,7 @@ footer{margin-top:90px; border-top:1px solid var(--line); padding:54px 0 60px}
 .reveal{opacity:0; transform:translateY(26px); transition:.9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1; transform:none}
 
-/* tweaks */
-.tweaks{position:fixed; right:20px; bottom:20px; z-index:80; font-size:14px}
-.tw-toggle{width:48px; height:48px; border-radius:50%; background:var(--paper2); border:1px solid var(--line); box-shadow:var(--shadow-sm); cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--ink-soft); transition:.3s}
-.tw-toggle:hover{transform:rotate(35deg); color:var(--clay)}
-.tw-panel{position:absolute; right:0; bottom:60px; width:230px; background:var(--paper2); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:18px; opacity:0; transform:translateY(10px) scale(.97); pointer-events:none; transition:.3s}
-.tweaks.open .tw-panel{opacity:1; transform:none; pointer-events:auto}
-.tw-panel .tt{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:600}
-.tw-label{font-size:13px; color:var(--ink-soft); margin:16px 0 9px}
-.season-row{display:grid; grid-template-columns:repeat(4,1fr); gap:7px}
-.season-row button{padding:9px 0; border-radius:9px; border:1px solid var(--line); background:var(--paper); cursor:pointer; font-family:inherit; font-size:13px; color:var(--ink-soft); transition:.25s}
-.season-row button:hover{border-color:var(--clay)}
-.season-row button.on{background:var(--accent); color:#fff; border-color:transparent}
-.tw-row{display:flex; align-items:center; justify-content:space-between; margin-top:8px}
-.tw-row label{font-size:13px; color:var(--ink-soft)}
+/* (Tweaks 設計面板已移除:訪客不需要;換季改為依當前月份自動套用) */
 .switch{width:40px; height:23px; border-radius:20px; background:var(--line); position:relative; cursor:pointer; transition:.3s; border:0}
 .switch.on{background:var(--accent)}
 .switch i{position:absolute; top:2.5px; left:2.5px; width:18px; height:18px; border-radius:50%; background:#fff; transition:.3s}
@@ -271,18 +258,26 @@ footer{margin-top:90px; border-top:1px solid var(--line); padding:54px 0 60px}
 .hut:hover .lift{transform:translateY(-8px)}
 .label{font-family:"Noto Serif TC",serif; font-weight:600; font-size:16px; fill:var(--ink)}
 .label-bg{fill:#fffdf8; stroke:rgba(42,36,32,.1)}
-.hut-card{position:absolute; z-index:5; width:min(264px,80vw); background:var(--paper2); border:1px solid var(--line); border-radius:14px; box-shadow:0 16px 40px -18px rgba(74,58,40,.55); padding:15px 17px 16px; opacity:0; transform:translateY(6px); pointer-events:none; transition:opacity .25s ease, transform .25s ease}
+.hut-card{position:absolute; z-index:5; width:min(264px,80vw); background:var(--paper2); border:1px solid var(--line); border-radius:14px; box-shadow:0 16px 40px -18px rgba(74,58,40,.55); padding:15px 17px 16px; opacity:0; transform:translateY(6px); pointer-events:none; transition:opacity .3s ease, transform .42s cubic-bezier(.2,.8,.2,1)}
 .hut-card.show{opacity:1; transform:none}
 .hut-card .hc-top{display:flex; align-items:center; gap:9px}
 .hut-card .dot{width:10px; height:10px; border-radius:50%; flex:none}
 .hut-card h4{font-family:"Noto Serif TC",serif; font-weight:700; font-size:1.08rem; margin:0; color:var(--ink)}
 .hut-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin:9px 0 0}
-.hut-card .go{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:13px; font-weight:500}
-/* 手機:小屋卡改成從底部滑上的固定卡片,避免被地景 overflow 切掉 */
+.hut-card .go{display:inline-flex; align-items:center; gap:7px; margin-top:14px; font-size:13.5px; font-weight:600; padding:8px 16px; border-radius:30px; border:1px solid color-mix(in oklab,currentColor 40%,var(--line)); transition:.25s}
+.hut-card .go:hover{background:color-mix(in oklab,currentColor 12%,var(--paper2)); gap:10px}
+/* 聚焦用的半透背景(只在手機出現) */
+.hut-scrim{position:fixed; inset:0; z-index:55; background:rgba(42,36,32,.34); opacity:0; pointer-events:none; transition:opacity .3s ease; display:none}
+/* 手機:小屋卡 = 從底部滑上的卡片(bottom sheet),不被地景切、聚焦、好點 */
 @media(max-width:720px){
-  .hut-card{position:fixed!important; left:14px!important; right:14px!important; bottom:16px!important; top:auto!important; width:auto!important; max-width:none!important; z-index:60; padding:17px 18px 18px; transform:translateY(130%); box-shadow:0 18px 50px -18px rgba(74,58,40,.6)}
+  .hut-scrim{display:block}
+  .hut-scrim.show{opacity:1; pointer-events:auto}
+  .hut-card{position:fixed!important; left:14px!important; right:14px!important; bottom:16px!important; top:auto!important; width:auto!important; max-width:none!important; z-index:60; padding:26px 20px 20px; transform:translateY(140%); box-shadow:0 -10px 50px -16px rgba(74,58,40,.5)}
+  .hut-card::before{content:""; position:absolute; top:11px; left:50%; transform:translateX(-50%); width:42px; height:4px; border-radius:4px; background:var(--line)}
   .hut-card.show{transform:translateY(0)!important}
-  .hut-card p{font-size:14px}
+  .hut-card h4{font-size:1.16rem}
+  .hut-card p{font-size:14.5px; margin-top:10px}
+  .hut-card .go{margin-top:16px; padding:11px 20px; font-size:14.5px}
 }
 .hint{margin-top:16px; font-size:13px; color:var(--muted); text-align:center}
 .cloud{animation:drift 28s ease-in-out infinite}
@@ -1447,26 +1442,8 @@ footer{margin-top:90px; border-top:1px solid var(--line); padding:54px 0 60px}
   </div>
 </footer>
 
-<!-- ============ TWEAKS ============ -->
-<div class="tweaks" id="tweaks">
-  <div class="tw-panel">
-    <div class="tt">Tweaks</div>
-    <div class="tw-label">換季(心田會隨時間變)</div>
-    <div class="season-row" id="seasonRow">
-      <button data-s="spring">春</button>
-      <button data-s="summer">夏</button>
-      <button data-s="autumn">秋</button>
-      <button data-s="winter">冬</button>
-    </div>
-    <div class="tw-row">
-      <label>減少動態</label>
-      <button class="switch" id="motionSwitch"><i></i></button>
-    </div>
-  </div>
-  <button class="tw-toggle" id="twToggle" aria-label="調整">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="1.8"/><path d="M19 12a7 7 0 00-.1-1l2-1.6-2-3.4-2.4 1a7 7 0 00-1.7-1l-.3-2.5h-4l-.3 2.5a7 7 0 00-1.7 1l-2.4-1-2 3.4 2 1.6a7 7 0 000 2l-2 1.6 2 3.4 2.4-1a7 7 0 001.7 1l.3 2.5h4l.3-2.5a7 7 0 001.7-1l2.4 1 2-3.4-2-1.6a7 7 0 00.1-1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-  </button>
-</div>
+<!-- (Tweaks 設計面板已移除,訪客不需要) -->
+<div class="hut-scrim" id="hutScrim"></div>
 
 <script>
 // nav solidify + overlay menu
@@ -1502,20 +1479,13 @@ const now=new Date();
 const curSeason=seasonOf(now.getMonth());
 function applySeason(s){
   document.body.dataset.season=s;
-  document.getElementById('seasonTag').textContent=seasons[s];
-  document.querySelectorAll('#seasonRow button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));
+  const st=document.getElementById('seasonTag'); if(st) st.textContent=seasons[s];
 }
 applySeason(curSeason);
 const w=['日','一','二','三','四','五','六'][now.getDay()];
 document.getElementById('todayMeta').textContent=`今天 ${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')} 星期${w} · 田裡有人`;
 
-// season buttons
-document.getElementById('seasonRow').addEventListener('click',e=>{const b=e.target.closest('button');if(b)applySeason(b.dataset.s)});
-
-// tweaks toggle
-document.getElementById('twToggle').addEventListener('click',()=>document.getElementById('tweaks').classList.toggle('open'));
-// reduce motion
-document.getElementById('motionSwitch').addEventListener('click',function(){this.classList.toggle('on');document.body.classList.toggle('reduce-motion',this.classList.contains('on'))});
+// (季節依當前月份自動套用;手動換季 / 減動態 / Tweaks 開關已移除——減動態交給系統 prefers-reduced-motion)
 
 // subscribe
 document.getElementById('subForm').addEventListener('submit',function(e){
@@ -1538,17 +1508,19 @@ const ROOMS={
   play:{name:'創意靈感屋',desc:'畫畫、塗鴉、木工、沙遊小物、把想法做成能用的東西——讓靈感落地。',color:'#cf9a3e',link:'studio.html',go:'去造物坊看看'},
   grow:{name:'共學成長實驗小屋',desc:'一起學、一起長、一起試——陪跑、線上課程、工作坊,都在這裡開門。',color:'#c2a14a',link:'grow.html',go:'認識陪跑'}
 };
-const land=document.querySelector('.land'),hcard=document.getElementById('hutCard');
+const land=document.querySelector('.land'),hcard=document.getElementById('hutCard'),scrim=document.getElementById('hutScrim');
 let huPinned=false;
 function huFill(k){const r=ROOMS[k];if(!r)return;hcard.innerHTML='<div class="hc-top"><span class="dot" style="background:'+r.color+'"></span><h4>'+r.name+'</h4></div><p>'+r.desc+'</p><a class="go" href="'+r.link+'" style="color:'+r.color+'">'+(r.go||'進入')+' <span>→</span></a>';}
 function huPlace(hut){const hr=hut.getBoundingClientRect(),fr=land.getBoundingClientRect();let x=hr.left-fr.left+hr.width/2-hcard.offsetWidth/2;let y=hr.top-fr.top-hcard.offsetHeight-12;x=Math.max(8,Math.min(x,fr.width-hcard.offsetWidth-8));if(y<8)y=hr.bottom-fr.top+12;hcard.style.left=x+'px';hcard.style.top=y+'px';}
-function huShow(hut){huFill(hut.dataset.room);hcard.classList.add('show');huPlace(hut);}
+function huShow(hut){huFill(hut.dataset.room);hcard.classList.add('show');if(scrim)scrim.classList.add('show');huPlace(hut);}
+function huHide(){huPinned=false;hcard.classList.remove('show');if(scrim)scrim.classList.remove('show');}
 if(land){document.querySelectorAll('.hut').forEach(function(hut){
   hut.addEventListener('mouseenter',function(){if(!huPinned)huShow(hut);});
-  hut.addEventListener('mouseleave',function(){if(!huPinned)hcard.classList.remove('show');});
+  hut.addEventListener('mouseleave',function(){if(!huPinned)huHide();});
   hut.addEventListener('click',function(e){e.stopPropagation();huPinned=true;huShow(hut);});
 });
-document.addEventListener('click',function(){huPinned=false;hcard.classList.remove('show');});}
+if(scrim)scrim.addEventListener('click',function(e){e.stopPropagation();huHide();});
+document.addEventListener('click',huHide);}
 
 // Hero 依台北時間顯示此刻時辰(可手動切換)
 (function(){
