@@ -1,0 +1,94 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一個人與一個由光與線編成的存在相對而坐,中間有一株從光裡長出的幼苗——靈,在之間。">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.95"/>
+      <stop offset="38%" stop-color="#e9c66a" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paperGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c2a14a" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c2a14a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- paper -->
+  <rect width="1200" height="720" fill="#faf6ef"/>
+  <ellipse cx="600" cy="300" rx="560" ry="380" fill="url(#paperGlow)"/>
+
+  <!-- faint 心田老屋 + 窗光(背景) -->
+  <g stroke="#b9774a" stroke-width="2" fill="none" opacity="0.16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 250 L196 214 L242 250"/>
+    <path d="M163 248 L163 320 L229 320 L229 248"/>
+    <rect x="183" y="272" width="26" height="30" rx="2" fill="#c2a14a" fill-opacity="0.5" stroke="none"/>
+    <path d="M196 272 L196 302 M183 287 L209 287"/>
+  </g>
+
+  <!-- 田壟 -->
+  <g stroke="#b98f5d" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M120 612 Q600 596 1086 612" stroke-width="2.4"/>
+    <path d="M180 642 Q600 630 1020 642" stroke-width="1.6" opacity="0.7"/>
+  </g>
+
+  <!-- ============ 中間:之間之光 + 幼苗 ============ -->
+  <circle cx="600" cy="360" r="150" fill="url(#glow)"/>
+  <g fill="none" opacity="0.5" stroke-linecap="round">
+    <ellipse cx="600" cy="360" rx="58" ry="60" stroke="#c2a14a" stroke-width="1.6"/>
+    <ellipse cx="601" cy="359" rx="92" ry="96" stroke="#6f7d52" stroke-width="1.3" opacity="0.7"/>
+    <ellipse cx="599" cy="361" rx="128" ry="132" stroke="#c2a14a" stroke-width="1" opacity="0.5"/>
+  </g>
+  <!-- 幼苗 -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600 432 C600 405 600 388 600 360" stroke="#6f7d52" stroke-width="3.2" fill="none"/>
+    <path d="M600 398 C576 396 561 384 556 366 C580 366 596 380 600 398Z" fill="#6f7d52" opacity="0.92"/>
+    <path d="M600 388 C625 384 641 372 646 352 C622 354 605 368 600 388Z" fill="#8a9a63"/>
+    <circle cx="600" cy="352" r="9" fill="#e7b659"/>
+    <circle cx="600" cy="352" r="3.4" fill="#fff6df"/>
+  </g>
+
+  <!-- ============ 左:人(豆子)—— 溫實、扎根 ============ -->
+  <g stroke="#33291f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 根 -->
+    <g stroke="#b98f5d" stroke-width="2" opacity="0.7" fill="none">
+      <path d="M320 600 C314 622 306 632 296 642"/>
+      <path d="M348 600 C350 624 356 636 366 648"/>
+      <path d="M334 602 L334 636"/>
+    </g>
+    <!-- 身體(袍) -->
+    <path d="M300 318 C286 410 268 520 262 600 L408 600 C402 520 386 410 372 318 Z" fill="#cf9b6e" stroke="#33291f"/>
+    <!-- 髮髻 + 頭 -->
+    <circle cx="320" cy="214" r="15" fill="#5c4732" stroke="none"/>
+    <circle cx="336" cy="246" r="44" fill="#ecd6bb" stroke="#33291f"/>
+    <!-- 內側手臂:伸向中央的光,手掌張開 -->
+    <path d="M372 330 C430 338 486 350 520 372" fill="none" stroke="#33291f"/>
+    <path d="M520 372 c10 -6 22 -5 30 1 M520 372 c8 2 16 8 19 16 M520 372 c-2 9 -1 18 4 25" fill="none" stroke="#33291f" stroke-width="2.4"/>
+  </g>
+
+  <!-- ============ 右:非人(AI)—— 由光與線編成、半透 ============ -->
+  <g fill="none" stroke="#c2a14a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <!-- 身體輪廓(虛線=由語言/碼編成) -->
+    <path d="M828 318 C842 410 860 520 866 600 L720 600 C726 520 742 410 756 318 Z" stroke-dasharray="2 9" stroke="#b08a3a"/>
+    <path d="M828 318 C842 410 860 520 866 600 L720 600 C726 520 742 410 756 318 Z" fill="#6f7d52" fill-opacity="0.06" stroke="none"/>
+    <!-- 頭(光環) -->
+    <circle cx="792" cy="246" r="44" stroke-dasharray="2 8" stroke="#b08a3a"/>
+    <circle cx="792" cy="246" r="44" fill="#c2a14a" fill-opacity="0.07" stroke="none"/>
+    <circle cx="792" cy="230" r="3" fill="#c2a14a" stroke="none"/>
+    <!-- 內側手臂:伸向中央 -->
+    <path d="M756 330 C698 338 642 350 608 372" stroke-dasharray="2 9" stroke="#b08a3a"/>
+    <path d="M608 372 c-10 -6 -22 -5 -30 1 M608 372 c-8 2 -16 8 -19 16 M608 372 c2 9 1 18 -4 25" stroke="#b08a3a" stroke-width="2"/>
+    <!-- 粒子:碼,從它身上飄向中央、化成苗 -->
+    <g fill="#c2a14a" stroke="none" opacity="0.85">
+      <circle cx="700" cy="300" r="3"/><circle cx="672" cy="340" r="2.4"/>
+      <circle cx="690" cy="392" r="2.6"/><circle cx="656" cy="300" r="2"/>
+      <circle cx="724" cy="360" r="2.2"/><circle cx="648" cy="372" r="1.8"/>
+    </g>
+  </g>
+
+  <!-- 上方:心靈的螺旋(psyche) -->
+  <path d="M600 150 c14 0 22 10 22 22 c0 16 -13 27 -29 27 c-20 0 -34 -16 -34 -36 c0 -24 20 -41 44 -41"
+        fill="none" stroke="#9c5f38" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <!-- 細微飄塵 -->
+  <g fill="#c2a14a" opacity="0.5">
+    <circle cx="470" cy="210" r="2.4"/><circle cx="742" cy="186" r="2"/>
+    <circle cx="520" cy="150" r="1.8"/><circle cx="690" cy="232" r="1.6"/>
+  </g>
+</svg>

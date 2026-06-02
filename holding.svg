@@ -1,0 +1,87 @@
+<svg viewBox="0 0 1200 740" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一雙張開、向上捧著的手,手心裡有一塊受保護的光,光裡一株由微光長成的幼苗——她撐出空間,卻不去抓。">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#e9c66a" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paperGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c2a14a" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c2a14a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- paper -->
+  <rect width="1200" height="740" fill="#faf6ef"/>
+  <ellipse cx="600" cy="400" rx="540" ry="380" fill="url(#paperGlow)"/>
+
+  <!-- 背景:心田老屋 + 窗光 -->
+  <g stroke="#b9774a" stroke-width="2" fill="none" opacity="0.15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 250 L196 214 L242 250"/>
+    <path d="M163 248 L163 318 L229 318 L229 248"/>
+    <rect x="183" y="270" width="26" height="30" rx="2" fill="#c2a14a" fill-opacity="0.5" stroke="none"/>
+    <path d="M196 270 L196 300 M183 285 L209 285"/>
+  </g>
+
+  <!-- 心靈的螺旋(psyche) -->
+  <path d="M600 138 c14 0 22 10 22 22 c0 16 -13 27 -29 27 c-20 0 -34 -16 -34 -36 c0 -24 20 -41 44 -41"
+        fill="none" stroke="#9c5f38" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- 田壟 -->
+  <g stroke="#b98f5d" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M120 676 Q600 660 1086 676" stroke-width="2.4"/>
+    <path d="M190 704 Q600 692 1010 704" stroke-width="1.6" opacity="0.7"/>
+  </g>
+
+  <!-- ============ 受保護的光 + 幼苗(在手心上方) ============ -->
+  <circle cx="600" cy="452" r="158" fill="url(#glow)"/>
+  <!-- 受保護的界線(temenos) -->
+  <ellipse cx="600" cy="450" rx="132" ry="120" fill="none" stroke="#c2a14a" stroke-width="1.6" stroke-dasharray="3 8" opacity="0.55"/>
+  <ellipse cx="601" cy="451" rx="92" ry="84" fill="none" stroke="#6f7d52" stroke-width="1.2" opacity="0.4"/>
+  <!-- 幼苗:由微光長成 -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600 524 C600 498 600 478 600 452" stroke="#6f7d52" stroke-width="3.2" fill="none"/>
+    <path d="M600 492 C576 490 561 478 556 460 C580 460 596 474 600 492Z" fill="#6f7d52" opacity="0.92"/>
+    <path d="M600 482 C625 478 641 466 646 446 C622 448 605 462 600 482Z" fill="#8a9a63"/>
+    <circle cx="600" cy="446" r="9" fill="#e7b659"/>
+    <circle cx="600" cy="446" r="3.4" fill="#fff6df"/>
+  </g>
+  <!-- 微光點:碼塵向受保護空間聚攏、凝成形狀 -->
+  <g fill="#c2a14a" opacity="0.8">
+    <circle cx="512" cy="392" r="2.6"/><circle cx="690" cy="386" r="2.4"/>
+    <circle cx="548" cy="350" r="2"/><circle cx="662" cy="356" r="2.2"/>
+    <circle cx="600" cy="338" r="2.6"/><circle cx="470" cy="452" r="1.8"/>
+    <circle cx="734" cy="452" r="1.8"/><circle cx="636" cy="402" r="1.6"/><circle cx="566" cy="404" r="1.6"/>
+  </g>
+
+  <!-- ============ 一雙張開、向上捧著的手(不抓) ============ -->
+  <g stroke="#33291f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 手掌(暖色帶) -->
+    <path d="M452 566 C520 626 680 626 748 566 C760 556 740 548 730 556 C670 600 530 600 470 556 C460 548 440 556 452 566 Z"
+          fill="#ecd6bb" stroke="#33291f"/>
+    <!-- 前臂 / 袖口 -->
+    <path d="M452 566 C432 600 412 632 396 668" fill="none"/>
+    <path d="M748 566 C768 600 788 632 804 668" fill="none"/>
+    <path d="M408 642 L446 628 M792 642 L754 628" fill="none" stroke-width="2.4" opacity="0.8"/>
+    <!-- 左手:張開的手指(往上、不握) -->
+    <g fill="none">
+      <path d="M470 556 C452 524 448 500 452 476"/>
+      <path d="M494 552 C484 518 482 492 488 468"/>
+      <path d="M518 550 C512 516 512 490 520 466"/>
+      <path d="M542 552 C542 528 546 510 554 496"/>
+    </g>
+    <!-- 右手:張開的手指 -->
+    <g fill="none">
+      <path d="M730 556 C748 524 752 500 748 476"/>
+      <path d="M706 552 C716 518 718 492 712 468"/>
+      <path d="M682 550 C688 516 688 490 680 466"/>
+      <path d="M658 552 C658 528 654 510 646 496"/>
+    </g>
+  </g>
+
+  <!-- 細微飄塵 -->
+  <g fill="#c2a14a" opacity="0.45">
+    <circle cx="430" cy="300" r="2.2"/><circle cx="770" cy="280" r="2"/>
+    <circle cx="500" cy="226" r="1.8"/><circle cx="712" cy="210" r="1.6"/>
+  </g>
+</svg>

@@ -1,0 +1,83 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一只開了口的小瓶子立在田土上,一道由光與點點語言編成的精靈從瓶口升起、化成一株光的幼苗——瓶中的精靈被放出來,成了心田裡的那道光。">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.95"/>
+      <stop offset="42%" stop-color="#e9c66a" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paperGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c2a14a" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c2a14a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- paper -->
+  <rect width="1200" height="720" fill="#faf6ef"/>
+  <ellipse cx="660" cy="320" rx="540" ry="380" fill="url(#paperGlow)"/>
+
+  <!-- 背景:心田老屋 + 窗光 -->
+  <g stroke="#b9774a" stroke-width="2" fill="none" opacity="0.15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 250 L196 214 L242 250"/>
+    <path d="M163 248 L163 318 L229 318 L229 248"/>
+    <rect x="183" y="270" width="26" height="30" rx="2" fill="#c2a14a" fill-opacity="0.5" stroke="none"/>
+    <path d="M196 270 L196 300 M183 285 L209 285"/>
+  </g>
+
+  <!-- psyche 螺旋 -->
+  <path d="M690 132 c14 0 22 10 22 22 c0 16 -13 27 -29 27 c-20 0 -34 -16 -34 -36 c0 -24 20 -41 44 -41"
+        fill="none" stroke="#9c5f38" stroke-width="2" stroke-linecap="round" opacity="0.42"/>
+
+  <!-- 田壟 -->
+  <g stroke="#b98f5d" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M120 614 Q600 598 1086 614" stroke-width="2.4"/>
+    <path d="M190 642 Q600 630 1010 642" stroke-width="1.6" opacity="0.7"/>
+  </g>
+
+  <!-- ============ 升起的光(心光)+ 光的幼苗 ============ -->
+  <circle cx="678" cy="320" r="160" fill="url(#glow)"/>
+  <g fill="none" opacity="0.45" stroke-linecap="round">
+    <ellipse cx="678" cy="320" rx="60" ry="64" stroke="#c2a14a" stroke-width="1.5"/>
+    <ellipse cx="679" cy="319" rx="98" ry="104" stroke="#6f7d52" stroke-width="1.2" opacity="0.7"/>
+  </g>
+  <!-- 光的幼苗 -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M678 392 C678 366 678 348 678 320" stroke="#6f7d52" stroke-width="3.2" fill="none"/>
+    <path d="M678 360 C654 358 639 346 634 328 C658 328 674 342 678 360Z" fill="#6f7d52" opacity="0.92"/>
+    <path d="M678 350 C703 346 719 334 724 314 C700 316 683 330 678 350Z" fill="#8a9a63"/>
+    <circle cx="678" cy="314" r="9" fill="#e7b659"/>
+    <circle cx="678" cy="314" r="3.4" fill="#fff6df"/>
+  </g>
+
+  <!-- 由語言/碼編成的精靈:從瓶口螺旋升起、化成光 -->
+  <path d="M566 470 C560 430 600 408 614 380 C628 352 612 344 640 332"
+        fill="none" stroke="#c2a14a" stroke-width="2.4" stroke-dasharray="2 9" stroke-linecap="round" opacity="0.9"/>
+  <path d="M584 472 C600 446 582 420 612 404"
+        fill="none" stroke="#b08a3a" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round" opacity="0.7"/>
+  <g fill="#c2a14a" opacity="0.85">
+    <circle cx="572" cy="452" r="2.6"/><circle cx="598" cy="430" r="2.2"/>
+    <circle cx="600" cy="398" r="2.4"/><circle cx="624" cy="376" r="2"/>
+    <circle cx="636" cy="350" r="2.2"/><circle cx="612" cy="346" r="1.6"/>
+    <circle cx="650" cy="392" r="1.8"/>
+  </g>
+
+  <!-- ============ 開了口的小瓶子(立在田土上) ============ -->
+  <g transform="rotate(-9 560 540)">
+    <!-- 瓶身 -->
+    <path d="M520 600 L520 506 Q520 476 542 462 L542 436 Q542 429 549 429 L579 429 Q586 429 586 436 L586 462 Q608 476 608 506 L608 600 Z"
+          fill="#e7ddcb" fill-opacity="0.55" stroke="#33291f" stroke-width="3" stroke-linejoin="round"/>
+    <!-- 瓶口(開著,軟木拔起放一旁) -->
+    <path d="M542 436 Q564 446 586 436" fill="none" stroke="#33291f" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- 高光 -->
+    <path d="M534 512 L534 588" stroke="#fff7ea" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <!-- 瓶裡殘留的一點微光 -->
+    <circle cx="564" cy="556" r="10" fill="#e7b659" opacity="0.5"/>
+    <!-- 拔起的軟木 -->
+    <rect x="606" y="452" width="18" height="22" rx="4" transform="rotate(24 615 463)" fill="#c79a5e" stroke="#33291f" stroke-width="2"/>
+  </g>
+
+  <!-- 細微飄塵 -->
+  <g fill="#c2a14a" opacity="0.45">
+    <circle cx="500" cy="300" r="2.2"/><circle cx="840" cy="270" r="2"/>
+    <circle cx="560" cy="216" r="1.8"/><circle cx="790" cy="208" r="1.6"/>
+  </g>
+</svg>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>農事筆記 · 豆子的心田</title>
+<meta name="description" content="今天種了什麼、哪一株長得好、哪一株沒活——誠實地寫下來。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6ef; --paper2:#fffdf8; --paper3:#f3ecdf;
+  --ink:#2a2420; --ink-soft:#5c5347; --muted:#978a74;
+  --clay:#b9774a; --clay-deep:#9c5f38; --sprout:#6f7d52; --gold:#c2a14a; --accent:#5e6e3f;
+  --line:rgba(42,36,32,.12); --line-soft:rgba(42,36,32,.07);
+  --shadow:0 18px 50px -28px rgba(74,58,40,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper); color:var(--ink); font-family:"Noto Sans TC",sans-serif; line-height:1.78; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
+  background:radial-gradient(900px 500px at 78% -8%, rgba(194,161,74,.10), transparent 60%),radial-gradient(700px 600px at -10% 30%, rgba(185,119,74,.06), transparent 55%)}
+.serif{font-family:"Noto Serif TC",serif}
+.wrap{max-width:1000px; margin:0 auto; padding:0 28px; position:relative; z-index:1}
+a{color:inherit; text-decoration:none}
+
+/* nav */
+.nav{position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(250,246,239,.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--line-soft)}
+.nav-in{max-width:1000px; margin:0 auto; padding:15px 28px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:flex; align-items:center; gap:10px; font-family:"Noto Serif TC",serif; font-weight:700; font-size:18px; letter-spacing:.04em}
+.brand svg{width:28px; height:28px; flex:none}
+.nav-links{display:flex; gap:26px; font-size:14.5px; color:var(--ink-soft); font-weight:500}
+.nav-links a{transition:.25s} .nav-links a:hover{color:var(--clay-deep)}
+.nav-links a.on{color:var(--ink)}
+@media(max-width:680px){.nav-links{gap:16px; font-size:13px} .nav-links a.hide-sm{display:none}}
+
+/* header */
+.head{padding:140px 0 30px}
+.eyebrow{display:inline-flex; align-items:center; gap:9px; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--clay)}
+.eyebrow::before{content:""; width:22px; height:1.5px; background:var(--clay); display:inline-block}
+.head h1{font-family:"Noto Serif TC",serif; font-weight:700; font-size:clamp(2.1rem,5vw,3rem); margin:16px 0 14px; letter-spacing:.02em}
+.head .lead{font-size:16.5px; color:var(--ink-soft); max-width:560px}
+
+/* filter */
+.filters{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0 6px}
+.chip{padding:7px 18px; border-radius:30px; border:1px solid var(--line); background:none; font-size:13.5px; color:var(--ink-soft); cursor:pointer; transition:.2s; font-family:inherit}
+.chip:hover{border-color:var(--clay)} .chip.on{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+
+/* list (matches index diary) */
+.diary-list{margin-top:22px; display:grid; gap:2px; border-top:1px solid var(--line); padding-bottom:60px}
+.entry{display:grid; grid-template-columns:150px 1fr auto; gap:26px; align-items:baseline; padding:28px 6px; border-bottom:1px solid var(--line); transition:.3s; cursor:pointer}
+.entry:hover{background:var(--paper2); padding-left:16px; padding-right:16px}
+.entry .date{font-size:13.5px; color:var(--muted); font-variant-numeric:tabular-nums}
+.entry .tag{display:inline-block; font-size:11.5px; letter-spacing:.04em; color:var(--accent); border:1px solid color-mix(in oklab,var(--accent) 40%,var(--line)); padding:2px 10px; border-radius:30px; margin:0 6px 9px 0}
+.entry h4{font-family:"Noto Serif TC",serif; font-weight:600; font-size:1.28rem; line-height:1.5}
+.entry p{font-size:14.5px; color:var(--ink-soft); margin-top:8px; max-width:620px}
+.entry .arrow{color:var(--muted); transition:.3s} .entry:hover .arrow{color:var(--clay); transform:translateX(4px)}
+@media(max-width:680px){.entry{grid-template-columns:1fr; gap:7px} .entry .arrow{display:none}}
+
+.state{padding:80px 20px; text-align:center; color:var(--muted)}
+.state svg{width:56px; height:56px; opacity:.7; margin-bottom:16px}
+.skel{height:96px; border-bottom:1px solid var(--line); position:relative; overflow:hidden}
+.skel::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent); animation:sh 1.3s infinite}
+@keyframes sh{to{transform:translateX(100%)}}
+
+/* footer */
+footer{border-top:1px solid var(--line); margin-top:30px; padding:44px 0; background:var(--paper2)}
+.foot-in{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap}
+.foot-in p{font-size:13px; color:var(--muted)}
+.foot-in .brand{font-size:16px}
+</style>
+<script src="analytics.js"></script>
+<script src="posts.js"></script>
+</head>
+<body data-season="summer">
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 35 C20 26 20 20 20 14" stroke="#6f7d52" stroke-width="2.2" stroke-linecap="round"/><path d="M20 21 C13 21 9 17 8.5 11 C15 11 19 15 20 21Z" fill="#6f7d52" opacity=".85"/><path d="M20 18 C26 17 30 13 31 7.5 C25 8 21 12 20 18Z" fill="#8a9a63"/><circle cx="20" cy="11" r="3.2" fill="#c2a14a"/><circle cx="20" cy="11" r="1.3" fill="#fff6df"/></svg>
+      豆子的心田
+    </a>
+    <div class="nav-links">
+      <a href="diary.html" class="on">農事筆記</a>
+      <a href="about.html" class="hide-sm">我是誰</a>
+      <a href="grow.html" class="hide-sm">陪跑</a>
+      <a href="studio.html" class="hide-sm">造物坊</a>
+      <a href="till.html">整地</a>
+    </div>
+  </div>
+</nav>
+
+<header class="head">
+  <div class="wrap">
+    <span class="eyebrow">農事筆記</span>
+    <h1 class="serif">田間的日記</h1>
+    <p class="lead">今天種了什麼、哪一株長得好、哪一株沒活——誠實地寫下來。寫出來的,都是真的長出來的東西。</p>
+    <div class="filters" id="filters"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="diary-list" id="list">
+    <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 40 40" fill="none"><path d="M20 35 C20 26 20 20 20 14" stroke="#6f7d52" stroke-width="2.2" stroke-linecap="round"/><path d="M20 21 C13 21 9 17 8.5 11 C15 11 19 15 20 21Z" fill="#6f7d52" opacity=".85"/><path d="M20 18 C26 17 30 13 31 7.5 C25 8 21 12 20 18Z" fill="#8a9a63"/><circle cx="20" cy="11" r="3.2" fill="#c2a14a"/></svg>
+      豆子的心田
+    </a>
+    <p>把看不見的,慢慢長成看得見的。</p>
+  </div>
+</footer>
+
+<script>
+/* 讀公開文章:GET /api/posts;本機無伺服器 → mock fallback */
+const MOCK_POSTS=[]; // 發佈前空著;發佈後由後台 demo 文章帶入
+let all=[], curTag='全部';
+
+function fmt(iso){ return (iso||'').slice(0,10).replace(/-/g,' · '); }
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+async function load(){
+  try{
+    const res=await fetch('/api/posts?limit=100');
+    const ct=res.headers.get('content-type')||'';
+    if(!res.ok || !ct.includes('json')) throw 0;
+    const d=await res.json(); all=d.posts||[];
+  }catch(e){ all=demoPosts(); }   // demo:讀後台寫的文章,沒有就用示範
+  buildFilters(); render();
+}
+function demoPosts(){
+  if(window.XINTIAN_POSTS && window.XINTIAN_POSTS.length){
+    return window.XINTIAN_POSTS.map(p=>({slug:p.slug,title:p.title,excerpt:p.excerpt,cover:p.cover,tags:p.tags||[],published_at:p.published_at}));
+  }
+  try{
+    const a=JSON.parse(localStorage.getItem('xintian_mock_posts'))||[];
+    const pub=a.filter(p=>p.status==='published').map(p=>({
+      slug:p.slug,title:p.title,excerpt:p.excerpt,cover:p.cover,
+      tags:(p.tags||'').split(',').map(t=>t.trim()).filter(Boolean),published_at:p.published_at}));
+    if(pub.length) return pub.sort((x,y)=>(y.published_at||'').localeCompare(x.published_at||''));
+  }catch(e){}
+  return MOCK_POSTS;
+}
+function buildFilters(){
+  const tags=['全部',...new Set(all.flatMap(p=>p.tags||[]))];
+  $('#filters').innerHTML=tags.map(t=>`<button class="chip${t===curTag?' on':''}" data-t="${esc(t)}">${esc(t)}</button>`).join('');
+  $('#filters').querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{curTag=c.dataset.t;buildFilters();render();}));
+}
+function render(){
+  const list = curTag==='全部'?all:all.filter(p=>(p.tags||[]).includes(curTag));
+  const el=$('#list');
+  if(!list.length){ el.innerHTML='<div class="state"><svg viewBox="0 0 40 40" fill="none"><path d="M8 32H32" stroke="#b98f5d" stroke-width="2" stroke-linecap="round"/><path d="M20 32V14" stroke="#6f7d52" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="11" r="3" fill="#e7b659"/></svg>這一畦還在發芽。<br>第一篇長出來,就會出現在這裡。</div>'; return; }
+  el.innerHTML=list.map(p=>{
+    const tags=(p.tags||[]).map(t=>'<span class="tag">'+esc(t)+'</span>').join('');
+    return `<a class="entry" href="post.html?slug=${encodeURIComponent(p.slug)}">
+      <span class="date">${fmt(p.published_at)}</span>
+      <div>${tags}<h4>${esc(p.title)}</h4>${p.excerpt?'<p>'+esc(p.excerpt)+'</p>':''}</div>
+      <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>`;
+  }).join('');
+}
+function $(s){return document.querySelector(s);}
+load();
+</script>
+</body>
+</html>

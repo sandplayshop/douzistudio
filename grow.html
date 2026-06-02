@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陪跑 · 豆子的心田</title>
+<meta name="description" content="我陪你,把你會的、想做的,用 AI 一起長出來。特別陪伴想用 AI 讓工作更輕的助人工作者。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6ef; --paper2:#fffdf8; --paper3:#f3ecdf; --ink:#2a2420; --ink-soft:#5c5347; --muted:#978a74;
+  --clay:#b9774a; --clay-deep:#9c5f38; --sprout:#6f7d52; --gold:#c2a14a; --accent:#52663a;
+  --line:rgba(42,36,32,.12); --line-soft:rgba(42,36,32,.07);
+  --shadow:0 18px 50px -28px rgba(74,58,40,.45); --shadow-sm:0 8px 24px -16px rgba(74,58,40,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper); color:var(--ink); font-family:"Noto Sans TC",sans-serif; line-height:1.8; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
+  background:radial-gradient(900px 500px at 78% -8%, rgba(194,161,74,.10), transparent 60%), radial-gradient(700px 600px at -10% 30%, rgba(185,119,74,.06), transparent 55%)}
+.serif{font-family:"Noto Serif TC",serif}
+a{color:inherit; text-decoration:none}
+.col{max-width:880px; margin:0 auto; padding:0 28px; position:relative; z-index:1}
+.eyebrow{font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--clay); font-weight:500}
+
+/* nav + menu */
+.nav{position:fixed; top:0; left:0; right:0; z-index:50; transition:.4s ease}
+.nav-in{max-width:1180px; margin:0 auto; padding:18px 28px; display:flex; align-items:center; justify-content:space-between}
+.nav.solid{background:rgba(250,246,239,.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--line-soft)}
+.brand{display:flex; align-items:center; gap:11px; font-family:"Noto Serif TC",serif; font-weight:700; font-size:19px; letter-spacing:.04em}
+.brand svg{width:30px; height:30px; flex:none}
+.menu-btn{display:inline-flex; align-items:center; gap:10px; border:0; background:none; cursor:pointer; color:var(--ink); font-family:"Noto Serif TC",serif; font-weight:600; font-size:15px; letter-spacing:.05em; padding:6px 2px}
+.menu-btn .bars{display:flex; flex-direction:column; gap:4px; width:22px}
+.menu-btn .bars span{height:2px; background:var(--ink); border-radius:2px; transition:.3s}
+.menu-btn:hover{color:var(--clay)} .menu-btn:hover .bars span{background:var(--clay)}
+.menu{position:fixed; inset:0; z-index:90; background:rgba(250,246,239,.97); backdrop-filter:blur(10px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; opacity:0; pointer-events:none; transition:opacity .35s ease}
+.menu.open{opacity:1; pointer-events:auto}
+.menu-mark{position:absolute; top:24px; left:30px; display:flex; align-items:center; gap:10px; font-family:"Noto Serif TC",serif; font-weight:700; font-size:18px}
+.menu-mark svg{width:28px; height:28px}
+.menu-close{position:absolute; top:22px; right:28px; border:0; background:none; font-size:34px; color:var(--ink); cursor:pointer; line-height:1}
+.menu-links{display:flex; flex-direction:column; align-items:center; gap:6px}
+.menu-links a{font-family:"Noto Serif TC",serif; font-size:clamp(1.8rem,5vw,2.6rem); font-weight:600; color:var(--ink); padding:6px 14px; transition:.25s}
+.menu-links a:hover{color:var(--clay)} .menu-links a.on{color:var(--clay-deep)}
+.menu-foot{position:absolute; bottom:30px; font-size:13.5px; color:var(--muted)}
+
+/* hero */
+.head{padding:150px 0 20px; text-align:center}
+.head h1{font-family:"Noto Serif TC",serif; font-weight:700; font-size:clamp(2.2rem,5.5vw,3.3rem); line-height:1.3; margin:18px 0 0; letter-spacing:.01em}
+.head .sub{font-size:clamp(1.05rem,2.4vw,1.25rem); color:var(--ink-soft); margin-top:20px; max-width:620px; margin-left:auto; margin-right:auto; line-height:1.85}
+
+.sec{padding:56px 0}
+.sec-head{margin-bottom:30px}
+.sec-title{font-family:"Noto Serif TC",serif; font-weight:700; font-size:clamp(1.5rem,3.4vw,2.1rem); margin-top:10px}
+.lead{font-size:16.5px; color:var(--ink-soft); max-width:660px; line-height:1.9}
+.lead.big{font-size:18px}
+
+/* cards */
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px}
+.card{background:var(--paper2); border:1px solid var(--line); border-radius:18px; padding:28px 26px}
+.card .ic{width:30px; height:30px; color:var(--accent); margin-bottom:14px}
+.card h4{font-family:"Noto Serif TC",serif; font-weight:600; font-size:1.18rem; margin-bottom:8px}
+.card p{font-size:14.5px; color:var(--ink-soft); line-height:1.8}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+/* who */
+.who-band{background:linear-gradient(180deg,#f5efe3,#efe7d6); border:1px solid var(--line); border-radius:24px; padding:clamp(30px,4vw,46px)}
+.who-band .tag{display:inline-block; font-size:12.5px; letter-spacing:.04em; color:var(--clay-deep); background:var(--paper2); border:1px solid var(--line); border-radius:30px; padding:4px 14px; margin-bottom:16px}
+.who-band h3{font-family:"Noto Serif TC",serif; font-weight:700; font-size:clamp(1.4rem,3vw,1.9rem); line-height:1.4}
+.who-band p{font-size:15.5px; color:var(--ink-soft); margin-top:14px; line-height:1.9; max-width:640px}
+.who-also{font-size:14px; color:var(--muted); margin-top:16px}
+
+/* steps */
+.steps{display:grid; gap:2px; border-top:1px solid var(--line); margin-top:10px}
+.step{display:grid; grid-template-columns:48px 1fr; gap:20px; padding:24px 6px; border-bottom:1px solid var(--line)}
+.step .n{font-family:"Noto Serif TC",serif; font-weight:700; font-size:1.5rem; color:var(--clay)}
+.step h4{font-family:"Noto Serif TC",serif; font-weight:600; font-size:1.16rem}
+.step p{font-size:14.5px; color:var(--ink-soft); margin-top:6px; line-height:1.8}
+
+/* fit */
+.fit{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px}
+.fit-col{border:1px solid var(--line); border-radius:18px; padding:24px 26px; background:var(--paper2)}
+.fit-col h4{font-size:14px; letter-spacing:.04em; margin-bottom:14px; color:var(--ink)}
+.fit-col.no h4{color:var(--muted)}
+.fit-col li{list-style:none; font-size:14.5px; color:var(--ink-soft); padding:7px 0 7px 26px; position:relative; line-height:1.7}
+.fit-col li::before{content:"🌱"; position:absolute; left:0; font-size:13px}
+.fit-col.no li::before{content:"·"; left:8px; color:var(--muted); font-size:20px; top:2px}
+@media(max-width:640px){.fit{grid-template-columns:1fr}}
+
+/* format */
+.fmt{max-width:640px; display:grid; gap:12px; margin-top:8px}
+.fmt-row{display:flex; gap:14px; align-items:flex-start; padding:16px 20px; background:var(--paper2); border:1px solid var(--line); border-radius:14px}
+.fmt-row .dot{flex:none; width:9px; height:9px; border-radius:50%; background:var(--sprout); margin-top:.5em}
+.fmt-row .t{font-weight:500} .fmt-row .s{font-size:13.5px; color:var(--muted); margin-top:3px; line-height:1.6}
+
+/* cta */
+.co-band{margin-top:8px; background:linear-gradient(180deg,#2f2a23,#241f19); color:#f3ead9; border-radius:24px; padding:clamp(38px,5vw,58px); box-shadow:var(--shadow); position:relative; overflow:hidden; text-align:center}
+.co-band::after{content:""; position:absolute; inset:0; background:radial-gradient(600px 300px at 50% -30%, rgba(194,161,74,.26), transparent 60%); pointer-events:none}
+.co-band h3{font-family:"Noto Serif TC",serif; font-weight:700; font-size:clamp(1.5rem,3.2vw,2.1rem); position:relative}
+.co-band p{color:#c9bca4; margin:12px auto 0; font-size:15.5px; position:relative; max-width:540px}
+.co-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; position:relative; justify-content:center}
+.co-links a{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:30px; font-size:14.5px; font-weight:500; transition:.3s}
+.co-primary{background:var(--gold); color:#2a2014} .co-primary:hover{background:#d4b25b; transform:translateY(-2px)}
+.co-ghost{border:1px solid rgba(243,234,217,.28); color:#f3ead9} .co-ghost:hover{border-color:var(--gold); color:#fff}
+
+footer{margin-top:80px; border-top:1px solid var(--line); padding:46px 0 56px}
+.foot{display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; color:var(--muted); font-size:13.5px}
+.foot a{color:var(--ink-soft); transition:.25s} .foot a:hover{color:var(--clay)}
+
+.reveal{opacity:0; transform:translateY(24px); transition:.9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1; transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none}}
+@media(max-width:560px){.col{padding:0 22px} .head{padding:120px 0 6px} .sec{padding:46px 0}}
+</style>
+<script src="analytics.js"></script>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 35 C20 26 20 20 20 14" stroke="#6f7d52" stroke-width="2.2" stroke-linecap="round"/><path d="M20 21 C13 21 9 17 8.5 11 C15 11 19 15 20 21Z" fill="#6f7d52" opacity=".85"/><path d="M20 18 C26 17 30 13 31 7.5 C25 8 21 12 20 18Z" fill="#8a9a63"/><circle cx="20" cy="11" r="3.2" fill="#c2a14a"/><circle cx="20" cy="11" r="1.3" fill="#fff6df"/></svg>
+      豆子的心田
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="開啟選單"><span class="bars"><span></span><span></span><span></span></span>選單</button>
+  </div>
+</nav>
+
+<div class="menu" id="menu">
+  <div class="menu-mark">
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 35 C20 26 20 20 20 14" stroke="#6f7d52" stroke-width="2.2" stroke-linecap="round"/><path d="M20 21 C13 21 9 17 8.5 11 C15 11 19 15 20 21Z" fill="#6f7d52" opacity=".85"/><path d="M20 18 C26 17 30 13 31 7.5 C25 8 21 12 20 18Z" fill="#8a9a63"/><circle cx="20" cy="11" r="3.2" fill="#c2a14a"/></svg>
+    豆子的心田
+  </div>
+  <button class="menu-close" id="menuClose" aria-label="關閉選單">&times;</button>
+  <nav class="menu-links">
+    <a href="index.html#diary">農事筆記</a>
+    <a href="index.html#rooms">心田小屋</a>
+    <a href="about.html">我是誰</a>
+    <a href="grow.html" class="on">陪跑</a>
+    <a href="studio.html">造物坊</a>
+    <a href="till.html">整地</a>
+  </nav>
+  <p class="menu-foot">把看不見的,慢慢長成看得見的。</p>
+</div>
+
+<header class="head">
+  <div class="col">
+    <span class="eyebrow reveal">陪跑</span>
+    <h1 class="reveal">我陪你,把你會的、想做的,<br>用 AI 一起長出來</h1>
+    <p class="sub reveal">不是幫你做完就走,也不是上一堂課。<br>是一段時間,我和你並肩,把一個<b>真的能用的東西</b>,一起種出來——而你,也跟著學會了怎麼種。</p>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="col">
+    <div class="sec-head reveal">
+      <span class="eyebrow">這是什麼</span>
+      <h2 class="sec-title serif">陪跑,是一起下田一整季</h2>
+    </div>
+    <p class="lead big reveal">我會好幾樣東西:接住一個人的深度、把系統真的建出來的務實、還有這一兩年,和 AI 一起工作長出來的方法。<b>陪跑,就是把這些,用在你身上、陪你走一段。</b>你帶著一個卡住的任務或一個想做的東西來,我們一起把它,從模糊變成做得出來。</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="col">
+    <div class="who-band reveal">
+      <span class="tag">我特別想陪的人</span>
+      <h3>跟得上時代的助人工作者 —— 想用 AI,讓工作輕一點、深一點</h3>
+      <p>如果你是諮商師、治療師、社工、輔導老師、教練……你最懂怎麼陪一個人,卻常常被個案紀錄、個案管理、無止盡的行政耗到沒力。<br><br>我自己就是助人工作者,也會開發。我可以陪你,<b>做出一套屬於你的 AI 小工具與方法</b>——讓寫紀錄更快、讓個案管理更清楚、讓你把省下的力氣,還給真正重要的人。</p>
+      <p class="who-also">也歡迎:想用 AI 長出能力的創作者、轉換期想找新方向的人、任何想跟上 AI、卻不想被它取代的人。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="col">
+    <div class="sec-head reveal">
+      <span class="eyebrow">一起會長出什麼</span>
+      <h2 class="sec-title serif">你帶走的,不只是一個成品</h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <h4>一個真的能用的東西</h4>
+        <p>一個小工具、一套流程、一個網站——為你的真實任務量身做出來,不是練習作品。</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M5 12H1m22 0h-4M6 6l-2-2m16 16-2-2M6 18l-2 2M20 4l-2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.8"/></svg>
+        <h4>會用 AI 的能力</h4>
+        <p>更重要的是:你學會怎麼自己跟 AI 協作。下次想做新東西,你自己種得出來。</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <h4>有人懂、有人陪</h4>
+        <p>卡住的時候,有一個既懂你的專業、又懂技術的人,在旁邊陪你想、陪你試。</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4>跨過那個「開始」</h4>
+        <p>很多事不是不會,是一直沒開始。陪跑給你一個一定會動起來的開始。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="col">
+    <div class="sec-head reveal">
+      <span class="eyebrow">怎麼進行</span>
+      <h2 class="sec-title serif">一季,從你的真實任務開始</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="n">1</span><div><h4>先整地 · 看清楚要種什麼</h4><p>從一場「整地」開始——把你想做的、卡住的攤開來,一起決定這一季要長出什麼。</p></div></div>
+      <div class="step reveal"><span class="n">2</span><div><h4>一起動手 · 邊做邊學</h4><p>固定節奏的並肩工作(線上)。我示範、你動手、AI 幫忙;每一步你都看得懂、跟得上。</p></div></div>
+      <div class="step reveal"><span class="n">3</span><div><h4>長出來 · 也帶走方法</h4><p>一季結束,你有一個真的能用的東西,也有了自己跟 AI 協作的能力——這塊地,以後你自己會種。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="col">
+    <div class="fit">
+      <div class="fit-col reveal">
+        <h4>陪跑很適合你,如果你…</h4>
+        <ul>
+          <li>有一個「很想做出來、卻一直沒做」的東西</li>
+          <li>想用 AI 讓專業工作更輕,但不知從何開始</li>
+          <li>想學的不只是成品,是「自己也會做」的能力</li>
+          <li>願意動手,也願意在過程裡被陪、被挑戰</li>
+        </ul>
+      </div>
+      <div class="fit-col no reveal">
+        <h4>可能還不適合,如果你…</h4>
+        <ul>
+          <li>只想把東西外包出去、自己完全不參與</li>
+          <li>要的是一份報告或一堂理論課</li>
+          <li>現在還沒有想碰的具體任務(那先來「整地」聊聊就好)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="col">
+    <div class="sec-head reveal">
+      <span class="eyebrow">形式</span>
+      <h2 class="sec-title serif">一季陪跑</h2>
+    </div>
+    <div class="fmt">
+      <div class="fmt-row reveal"><span class="dot"></span><div><div class="t">以「一季」為單位(約 4–6 週)</div><div class="s">線上進行 · 固定節奏並肩工作,有開始也有完成。</div></div></div>
+      <div class="fmt-row reveal"><span class="dot"></span><div><div class="t">可 1 對 1,也可 3–4 人小組共學</div><div class="s">一個人深耕,或一小群人互相打氣、一起長。</div></div></div>
+      <div class="fmt-row reveal"><span class="dot"></span><div><div class="t">費用依形式而定 · 我們在整地時一起決定</div><div class="s">先來一場整地,看清楚你要的,再談怎麼陪最合適。</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="col reveal">
+    <div class="co-band">
+      <h3 class="serif">想找人陪你,長出一個東西?</h3>
+      <p>陪跑從一場「整地」開始——先把你想做的攤開來聊聊,合不合適,我也會老實說。</p>
+      <div class="co-links">
+        <a class="co-primary" href="till.html#book">先來一場整地
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="co-ghost" href="mailto:contact@douzistudio.com">直接寫信給我</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="col foot">
+    <span>陪跑 · 豆子的心田 — 我陪你,把你會的,用 AI 一起長出來。</span>
+    <a href="index.html">← 回首頁</a>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>30));
+const menu=document.getElementById('menu');
+function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('menuBtn').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
