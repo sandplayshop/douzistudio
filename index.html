@@ -278,6 +278,12 @@ footer{margin-top:90px; border-top:1px solid var(--line); padding:54px 0 60px}
 .hut-card h4{font-family:"Noto Serif TC",serif; font-weight:700; font-size:1.08rem; margin:0; color:var(--ink)}
 .hut-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.7; margin:9px 0 0}
 .hut-card .go{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:13px; font-weight:500}
+/* 手機:小屋卡改成從底部滑上的固定卡片,避免被地景 overflow 切掉 */
+@media(max-width:720px){
+  .hut-card{position:fixed!important; left:14px!important; right:14px!important; bottom:16px!important; top:auto!important; width:auto!important; max-width:none!important; z-index:60; padding:17px 18px 18px; transform:translateY(130%); box-shadow:0 18px 50px -18px rgba(74,58,40,.6)}
+  .hut-card.show{transform:translateY(0)!important}
+  .hut-card p{font-size:14px}
+}
 .hint{margin-top:16px; font-size:13px; color:var(--muted); text-align:center}
 .cloud{animation:drift 28s ease-in-out infinite}
 .birds2{animation:drift2 22s ease-in-out infinite}
