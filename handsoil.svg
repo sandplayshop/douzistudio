@@ -1,0 +1,52 @@
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一雙手按進陽台盆栽的土裡，一株小苗剛剛冒出——親手碰土的安定。">
+  <defs>
+    <radialGradient id="hs-glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#f3d98a" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="#f3d98a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hs-soil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a98051"/><stop offset="100%" stop-color="#7c5a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" fill="#faf6ef"/>
+  <ellipse cx="320" cy="180" rx="280" ry="170" fill="url(#hs-glow)"/>
+
+  <!-- 山的安靜(背景,faint) -->
+  <path d="M60 250 Q220 150 360 232 Q470 290 600 232" fill="none" stroke="#b98f5d" stroke-width="2" opacity="0.28" stroke-linecap="round"/>
+
+  <!-- 盆(陽台盆栽) -->
+  <path d="M196 372 L444 372 L420 268 L220 268 Z" fill="#cdab7e" stroke="#9c6f3f" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M214 286 L426 286" stroke="#8a5f37" stroke-width="2" opacity="0.4"/>
+  <!-- 土 -->
+  <path d="M222 270 Q320 256 418 270 L420 286 Q320 274 220 286 Z" fill="url(#hs-soil)"/>
+
+  <!-- 小苗(剛冒出) -->
+  <g stroke-linecap="round" stroke-linejoin="round" transform="translate(320,276)">
+    <path d="M0 0 C0 -16 0 -26 0 -40" stroke="#6f7d52" stroke-width="3.4" fill="none"/>
+    <path d="M0 -20 C-14 -21 -22 -28 -24 -40 C-12 -40 -2 -32 0 -20Z" fill="#6f7d52" opacity="0.9"/>
+    <path d="M0 -28 C14 -30 22 -37 24 -49 C12 -47 2 -39 0 -28Z" fill="#8a9a63"/>
+    <circle cx="0" cy="-40" r="5" fill="#e7b659"/><circle cx="0" cy="-40" r="2" fill="#fff6df"/>
+  </g>
+
+  <!-- 雙手按進土裡 -->
+  <g stroke="#5c4732" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- 左臂 -->
+    <path d="M70 418 C96 372 132 340 186 318 L214 350 C168 374 138 398 116 420 Z" fill="#cf9b6e"/>
+    <!-- 左手按土 -->
+    <path d="M186 316 C170 306 170 290 188 284 C214 280 240 296 262 292 C258 312 240 322 214 320 C200 320 192 320 186 316 Z" fill="#ecd6bb"/>
+    <g stroke-width="2" fill="none" opacity="0.85">
+      <path d="M222 300 C224 290 230 284 240 282"/><path d="M236 304 C240 295 246 290 256 290"/>
+    </g>
+    <!-- 右臂 -->
+    <path d="M570 418 C544 372 508 340 454 318 L426 350 C472 374 502 398 524 420 Z" fill="#cf9b6e"/>
+    <!-- 右手按土 -->
+    <path d="M454 316 C470 306 470 290 452 284 C426 280 400 296 378 292 C382 312 400 322 426 320 C440 320 448 320 454 316 Z" fill="#ecd6bb"/>
+    <g stroke-width="2" fill="none" opacity="0.85">
+      <path d="M418 300 C416 290 410 284 400 282"/><path d="M404 304 C400 295 394 290 384 290"/>
+    </g>
+  </g>
+
+  <!-- 一兩點土/水 -->
+  <g fill="#8c6a40" opacity="0.5"><circle cx="300" cy="300" r="2"/><circle cx="346" cy="306" r="1.8"/></g>
+  <g fill="#c2a14a" opacity="0.4"><circle cx="250" cy="200" r="1.8"/><circle cx="400" cy="196" r="1.6"/></g>
+</svg>

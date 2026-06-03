@@ -1,0 +1,82 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="三次與土地相遇，連成一條慢慢回家的路：童年的老屋菜園、山上陽台的盆栽、沙盤與心田的光。">
+  <defs>
+    <radialGradient id="tm-light" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.92"/>
+      <stop offset="44%" stop-color="#e9c66a" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tm-paper" cx="50%" cy="46%" r="55%">
+      <stop offset="0%" stop-color="#c2a14a" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c2a14a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tm-soil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b98f5d"/><stop offset="100%" stop-color="#8c6a40"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="720" fill="#faf6ef"/>
+  <ellipse cx="640" cy="320" rx="600" ry="360" fill="url(#tm-paper)"/>
+
+  <!-- 心田的光(第三站上方) -->
+  <ellipse cx="960" cy="320" rx="300" ry="250" fill="url(#tm-light)"/>
+  <g fill="none" opacity="0.4" stroke-linecap="round">
+    <circle cx="960" cy="320" r="92" stroke="#c2a14a" stroke-width="1.3"/>
+    <circle cx="960" cy="320" r="140" stroke="#6f7d52" stroke-width="1" opacity="0.7"/>
+  </g>
+  <circle cx="960" cy="320" r="46" fill="#f3d98a" opacity="0.55"/>
+
+  <!-- 回家的路(串起三次) -->
+  <path d="M90 612 Q360 560 540 560 T 940 446" fill="none" stroke="#d9b87e" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 13" opacity="0.7"/>
+
+  <!-- ====== 第一站：童年老屋 + 菜園 ====== -->
+  <g stroke="#9c5f38" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 486 L214 440 L278 486" stroke-width="4"/>
+    <path d="M166 484 L166 586 L262 586 L262 484" stroke-width="4" fill="#f3ead9" fill-opacity="0.4"/>
+    <rect x="200" y="536" width="28" height="50" rx="2" fill="#c2a14a" fill-opacity="0.35" stroke="#9c5f38" stroke-width="2.4"/>
+    <rect x="178" y="502" width="20" height="20" rx="2" fill="#c2a14a" fill-opacity="0.45" stroke="#9c5f38" stroke-width="2"/>
+  </g>
+  <!-- 菜園小苗 -->
+  <g stroke="#6f7d52" stroke-width="2.2" fill="none" stroke-linecap="round">
+    <path d="M300 600 C300 590 300 584 300 576 M300 588 C294 588 290 584 290 578 M300 586 C306 586 310 582 310 576"/>
+    <path d="M330 604 C330 594 330 588 330 580 M330 592 C324 592 320 588 320 582 M330 590 C336 590 340 586 340 580"/>
+  </g>
+
+  <!-- ====== 第二站：山上陽台盆栽 ====== -->
+  <path d="M470 566 Q560 486 660 566" fill="none" stroke="#b98f5d" stroke-width="2.4" opacity="0.55"/>
+  <g>
+    <!-- 盆 -->
+    <path d="M536 556 L596 556 L588 520 L544 520 Z" fill="url(#tm-soil)" stroke="#8a5a30" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M544 522 L588 522" stroke="#7a5c38" stroke-width="2" opacity="0.6"/>
+    <!-- 盆裡的苗 -->
+    <g stroke-linecap="round" stroke-linejoin="round" transform="translate(566,520)">
+      <path d="M0 0 C0 -14 0 -22 0 -34" stroke="#6f7d52" stroke-width="3" fill="none"/>
+      <path d="M0 -18 C-13 -19 -21 -26 -23 -37 C-11 -37 -2 -29 0 -18Z" fill="#6f7d52" opacity="0.9"/>
+      <path d="M0 -25 C13 -27 21 -34 23 -45 C11 -43 2 -35 0 -25Z" fill="#8a9a63"/>
+      <circle cx="0" cy="-37" r="4.4" fill="#e7b659"/>
+    </g>
+  </g>
+
+  <!-- ====== 第三站：沙盤 + 心田的苗 ====== -->
+  <g>
+    <!-- 沙盤(略帶透視) -->
+    <path d="M872 506 L1052 506 L1024 458 L900 458 Z" fill="#efe3c8" stroke="#b98f5d" stroke-width="3" stroke-linejoin="round"/>
+    <!-- 沙紋 -->
+    <g stroke="#c8a86a" stroke-width="1.6" fill="none" opacity="0.6" stroke-linecap="round">
+      <path d="M906 488 Q962 478 1018 488"/>
+      <path d="M896 474 Q962 466 1006 474"/>
+    </g>
+    <!-- 沙盤上一株苗(心光顯形) -->
+    <g stroke-linecap="round" stroke-linejoin="round" transform="translate(962,470)">
+      <path d="M0 14 C0 0 0 -8 0 -22" stroke="#6f7d52" stroke-width="3.4" fill="none"/>
+      <path d="M0 -4 C-14 -5 -22 -12 -24 -24 C-12 -24 -2 -16 0 -4Z" fill="#6f7d52" opacity="0.9"/>
+      <path d="M0 -12 C14 -14 22 -21 24 -33 C12 -31 2 -23 0 -12Z" fill="#8a9a63"/>
+      <circle cx="0" cy="-24" r="5.2" fill="#e7b659"/><circle cx="0" cy="-24" r="2" fill="#fff6df"/>
+    </g>
+  </g>
+
+  <!-- 飄塵 -->
+  <g fill="#c2a14a" opacity="0.42">
+    <circle cx="430" cy="250" r="2.4"/><circle cx="700" cy="210" r="2"/><circle cx="1080" cy="250" r="1.8"/>
+    <circle cx="560" cy="180" r="1.6"/><circle cx="860" cy="160" r="1.8"/>
+  </g>
+</svg>
