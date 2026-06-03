@@ -1,0 +1,49 @@
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一本攤開的夢記本，記下的夢化成一點微光與小苗，從紙頁上悄悄長出來。">
+  <defs>
+    <radialGradient id="dn-glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.55"/>
+      <stop offset="46%" stop-color="#e9c66a" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="420" fill="#faf6ef"/>
+  <ellipse cx="320" cy="170" rx="220" ry="170" fill="url(#dn-glow)"/>
+
+  <!-- 從夢裡長出的微光小苗 -->
+  <g fill="none" opacity="0.4" stroke-linecap="round">
+    <circle cx="320" cy="168" r="52" stroke="#c2a14a" stroke-width="1.3"/>
+    <circle cx="320" cy="168" r="86" stroke="#6f7d52" stroke-width="1" opacity="0.7"/>
+  </g>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M320 286 C320 250 320 222 320 188" stroke="#6f7d52" stroke-width="3.6" fill="none"/>
+    <path d="M320 250 C294 248 277 236 271 216 C297 216 314 230 320 250Z" fill="#6f7d52" opacity="0.9"/>
+    <path d="M320 234 C346 230 363 218 369 198 C343 200 325 214 320 234Z" fill="#8a9a63"/>
+    <circle cx="320" cy="184" r="8.4" fill="#e7b659"/><circle cx="320" cy="184" r="3" fill="#fff6df"/>
+  </g>
+
+  <!-- 攤開的夢記本 -->
+  <g stroke="#cdbb98" stroke-width="2.4" stroke-linejoin="round">
+    <path d="M150 336 L320 352 L320 314 L168 298 Z" fill="#fffdf8"/>
+    <path d="M490 336 L320 352 L320 314 L472 298 Z" fill="#fffdf8"/>
+  </g>
+  <path d="M320 314 L320 352" stroke="#cdbb98" stroke-width="2.4"/>
+  <!-- 書頁陰影 -->
+  <path d="M150 336 L320 352 L490 336" fill="none" stroke="#e2d5b8" stroke-width="3" opacity="0.6"/>
+  <!-- 手寫的字（夢的紀錄） -->
+  <g stroke="#b8a98a" stroke-width="1.6" stroke-linecap="round" opacity="0.75">
+    <path d="M186 314 L286 324"/><path d="M188 322 L268 330"/><path d="M190 330 L284 339"/>
+    <path d="M356 322 L452 313"/><path d="M360 330 L436 322"/><path d="M362 338 L448 329"/>
+  </g>
+  <!-- 筆 -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M404 366 L470 322" stroke="#9c6f3f" stroke-width="6"/>
+    <path d="M404 366 L414 360 L398 352 Z" fill="#5c4732" stroke="#5c4732" stroke-width="1.4"/>
+    <path d="M470 322 l8 -6" stroke="#c2a14a" stroke-width="6"/>
+  </g>
+
+  <!-- 飄起的光點 -->
+  <g fill="#c2a14a" opacity="0.5">
+    <circle cx="252" cy="210" r="2"/><circle cx="392" cy="206" r="1.8"/>
+    <circle cx="290" cy="150" r="1.6"/><circle cx="358" cy="158" r="1.6"/><circle cx="320" cy="120" r="2"/>
+  </g>
+</svg>
