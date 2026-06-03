@@ -1,0 +1,82 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一顆發芽的種薯安在培好的土壟裡，向上長出一株帶金芽尖的幼苗，柔陽照著——自己種，心就比較不慌。">
+  <defs>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#e9c66a" stop-opacity="0.40"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paperGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c2a14a" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c2a14a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b98f5d"/>
+      <stop offset="100%" stop-color="#8c6a40"/>
+    </linearGradient>
+  </defs>
+
+  <!-- paper -->
+  <rect width="1200" height="720" fill="#faf6ef"/>
+  <ellipse cx="600" cy="320" rx="560" ry="380" fill="url(#paperGlow)"/>
+
+  <!-- 柔陽 -->
+  <circle cx="600" cy="244" r="184" fill="url(#sun)"/>
+  <circle cx="600" cy="244" r="46" fill="#f3d98a" opacity="0.5"/>
+  <circle cx="600" cy="244" r="46" fill="none" stroke="#d9b24e" stroke-width="1.6" opacity="0.5"/>
+
+  <!-- faint 心田老屋(右上,品牌一致) -->
+  <g stroke="#b9774a" stroke-width="2" fill="none" opacity="0.13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M980 196 L1026 160 L1072 196"/>
+    <path d="M993 194 L993 266 L1059 266 L1059 194"/>
+    <rect x="1013" y="218" width="26" height="30" rx="2" fill="#c2a14a" fill-opacity="0.5" stroke="none"/>
+    <path d="M1026 218 L1026 248 M1013 233 L1039 233"/>
+  </g>
+
+  <!-- 田壟 -->
+  <g stroke="#b98f5d" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M120 598 Q600 582 1086 598" stroke-width="2.4"/>
+    <path d="M180 634 Q600 622 1020 634" stroke-width="1.6" opacity="0.7"/>
+  </g>
+
+  <!-- 培土小丘 -->
+  <path d="M430 558 Q600 470 770 558 Q700 586 600 586 Q500 586 430 558 Z" fill="url(#soil)" opacity="0.9"/>
+  <path d="M455 554 Q600 486 745 554" fill="none" stroke="#7a5c38" stroke-width="1.4" opacity="0.45"/>
+
+  <!-- 根(扎進土) -->
+  <g stroke="#b98f5d" stroke-width="2" fill="none" opacity="0.65" stroke-linecap="round">
+    <path d="M585 556 C578 584 568 600 556 614"/>
+    <path d="M612 556 C616 586 624 602 636 616"/>
+    <path d="M600 560 L600 600"/>
+  </g>
+
+  <!-- 種薯(半埋) -->
+  <ellipse cx="600" cy="518" rx="88" ry="64" fill="#cd9e6e" stroke="#9c7445" stroke-width="3"/>
+  <g fill="#8c6a40">
+    <circle cx="558" cy="498" r="3.4"/><circle cx="636" cy="510" r="3"/>
+    <circle cx="592" cy="546" r="3"/><circle cx="554" cy="534" r="2.6"/>
+    <circle cx="624" cy="542" r="2.6"/>
+  </g>
+  <g stroke="#b07f50" stroke-width="1.4" fill="none" opacity="0.5" stroke-linecap="round">
+    <path d="M548 510 q8 -6 18 -4"/><path d="M620 496 q10 0 16 8"/>
+  </g>
+
+  <!-- 芽尖柔光環(心理安定,克制) -->
+  <circle cx="600" cy="356" r="60" fill="none" stroke="#c2a14a" stroke-width="1.4" opacity="0.4"/>
+
+  <!-- 幼苗(從種薯長出,沿用品牌芽語彙) -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600 464 C600 428 600 398 600 360" stroke="#6f7d52" stroke-width="4" fill="none"/>
+    <path d="M600 428 C570 426 551 412 545 390 C575 390 595 406 600 428Z" fill="#6f7d52" opacity="0.92"/>
+    <path d="M600 412 C631 408 651 394 657 372 C627 374 606 390 600 412Z" fill="#8a9a63"/>
+    <path d="M600 392 C580 388 568 376 565 360 C585 362 598 376 600 392Z" fill="#6f7d52" opacity="0.8"/>
+    <circle cx="600" cy="356" r="10" fill="#e7b659"/>
+    <circle cx="600" cy="356" r="3.6" fill="#fff6df"/>
+  </g>
+
+  <!-- 細微飄塵/光點 -->
+  <g fill="#c2a14a" opacity="0.5">
+    <circle cx="470" cy="300" r="2.4"/><circle cx="742" cy="286" r="2"/>
+    <circle cx="500" cy="232" r="1.8"/><circle cx="710" cy="330" r="1.6"/>
+    <circle cx="540" cy="430" r="1.6"/><circle cx="668" cy="446" r="1.8"/>
+  </g>
+</svg>
