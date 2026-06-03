@@ -124,10 +124,11 @@ function qs(k){return new URLSearchParams(location.search).get(k);}
 
 async function load(){
   const slug=qs('slug');
+  const lang=qs('lang')==='en'?'en':'';
   if(!slug){ return fail('沒有指定文章。'); }
   let post=null;
   try{
-    const res=await fetch('/api/posts/'+encodeURIComponent(slug));
+    const res=await fetch('/api/posts/'+encodeURIComponent(slug)+(lang?('?lang='+lang):''));
     const ct=res.headers.get('content-type')||'';
     if(res.ok && ct.includes('json')){ const d=await res.json(); post=d.post; }
     else if(res.status===404 && ct.includes('json')){ post=null; }   // 真 API 說沒這篇
