@@ -131,13 +131,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 /* 讀公開文章:GET /api/posts;本機無伺服器 → mock fallback */
 const MOCK_POSTS=[]; // 發佈前空著;發佈後由後台 demo 文章帶入
 let all=[], curTag='全部';
+const _qs=new URLSearchParams(location.search);
+let LANG=_qs.get('lang'); if(LANG){try{localStorage.setItem('xtlang',LANG);}catch(e){}} else {try{LANG=localStorage.getItem('xtlang')||'';}catch(e){}} LANG=(LANG==='en')?'en':'';
 
 function fmt(iso){ return (iso||'').slice(0,10).replace(/-/g,' · '); }
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
 async function load(){
   try{
-    const res=await fetch('/api/posts?limit=100');
+    const res=await fetch('/api/posts?limit=100'+(LANG==='en'?'&lang=en':''));
     const ct=res.headers.get('content-type')||'';
     if(!res.ok || !ct.includes('json')) throw 0;
     const d=await res.json(); all=d.posts||[];
@@ -168,7 +170,7 @@ function render(){
   if(!list.length){ el.innerHTML='<div class="state"><svg viewBox="0 0 40 40" fill="none"><path d="M8 32H32" stroke="#b98f5d" stroke-width="2" stroke-linecap="round"/><path d="M20 32V14" stroke="#6f7d52" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="11" r="3" fill="#e7b659"/></svg>這一畦還在發芽。<br>第一篇長出來,就會出現在這裡。</div>'; return; }
   el.innerHTML=list.map(p=>{
     const tags=(p.tags||[]).map(t=>'<span class="tag">'+esc(t)+'</span>').join('');
-    return `<a class="entry" href="post.html?slug=${encodeURIComponent(p.slug)}">
+    return `<a class="entry" href="post.html?slug=${encodeURIComponent(p.slug)}${LANG==='en'?'&lang=en':''}">
       <span class="date">${fmt(p.published_at)}</span>
       <div>${tags}<h4>${esc(p.title)}</h4>${p.excerpt?'<p>'+esc(p.excerpt)+'</p>':''}</div>
       <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
