@@ -109,7 +109,7 @@ window.XINTIAN_POSTS = [
     "status": "published",
     "published_at": "2026-06-02T23:40:00+08:00",
     "created_at": "2026-06-02T23:30:00+08:00",
-    "updated_at": "2026-06-03T10:47:12+08:00"
+    "updated_at": "2026-06-03T20:33:20+08:00"
   },
   {
     "id": 5,
