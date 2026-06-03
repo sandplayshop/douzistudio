@@ -1,0 +1,48 @@
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一隻攤開的手掌，托著一株向光生長的小苗——鬆手、讓出空間，那道光自己會長。">
+  <defs>
+    <radialGradient id="lg-light" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.9"/>
+      <stop offset="45%" stop-color="#e9c66a" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="420" fill="#faf6ef"/>
+
+  <!-- 上方的光 -->
+  <ellipse cx="320" cy="150" rx="190" ry="150" fill="url(#lg-light)"/>
+  <g fill="none" opacity="0.4" stroke-linecap="round">
+    <circle cx="320" cy="150" r="60" stroke="#c2a14a" stroke-width="1.3"/>
+    <circle cx="320" cy="150" r="96" stroke="#6f7d52" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <!-- 小苗(自性自己長) -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M320 300 C320 262 320 232 320 196" stroke="#6f7d52" stroke-width="4" fill="none"/>
+    <path d="M320 262 C292 260 274 247 268 226 C296 226 315 241 320 262Z" fill="#6f7d52" opacity="0.92"/>
+    <path d="M320 246 C349 242 368 229 374 208 C346 210 326 225 320 246Z" fill="#8a9a63"/>
+    <path d="M320 226 C300 222 288 211 285 196 C305 198 318 211 320 226Z" fill="#6f7d52" opacity="0.8"/>
+    <circle cx="320" cy="192" r="9" fill="#e7b659"/><circle cx="320" cy="192" r="3.2" fill="#fff6df"/>
+  </g>
+
+  <!-- 攤開的手掌(鬆手,不抓) -->
+  <g stroke="#5c4732" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 前臂 -->
+    <path d="M280 416 C282 382 292 360 314 352 L356 352 C366 374 368 398 366 416 Z" fill="#cf9b6e"/>
+    <!-- 手掌(杯狀,托著) -->
+    <path d="M246 318 C256 350 286 366 320 366 C354 366 384 350 394 318 C386 308 374 306 362 310 C351 298 334 295 320 300 C306 295 289 298 278 310 C266 306 254 308 246 318 Z" fill="#ecd6bb"/>
+    <!-- 五指攤開 -->
+    <g stroke-width="2.2" fill="none">
+      <path d="M256 314 C246 300 242 288 244 276"/>
+      <path d="M288 302 C284 286 284 274 288 262"/>
+      <path d="M320 298 C320 282 320 270 320 258"/>
+      <path d="M352 302 C356 286 356 274 352 262"/>
+      <path d="M384 314 C394 300 398 288 396 276"/>
+    </g>
+  </g>
+
+  <!-- 向上飄的光點(讓出去) -->
+  <g fill="#c2a14a" opacity="0.5">
+    <circle cx="250" cy="210" r="2.2"/><circle cx="398" cy="206" r="2"/>
+    <circle cx="286" cy="150" r="1.8"/><circle cx="360" cy="158" r="1.6"/><circle cx="320" cy="110" r="2"/>
+  </g>
+</svg>

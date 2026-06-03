@@ -1,0 +1,71 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一個人站在老屋門口的背影，身後是一整片向遠方展開的田，田的盡頭有一道溫暖的光，路上有一株小苗——門口的你，和整片田的光。">
+  <defs>
+    <radialGradient id="dl-light" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6e3a6" stop-opacity="0.95"/>
+      <stop offset="42%" stop-color="#e9c66a" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#e9c66a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dl-paper" cx="50%" cy="46%" r="55%">
+      <stop offset="0%" stop-color="#c2a14a" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c2a14a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="720" fill="#faf6ef"/>
+  <ellipse cx="640" cy="320" rx="600" ry="360" fill="url(#dl-paper)"/>
+
+  <!-- 心光：整片田盡頭的光(自性) -->
+  <ellipse cx="858" cy="372" rx="360" ry="300" fill="url(#dl-light)"/>
+  <g fill="none" opacity="0.45" stroke-linecap="round">
+    <circle cx="858" cy="372" r="116" stroke="#c2a14a" stroke-width="1.4"/>
+    <circle cx="858" cy="372" r="172" stroke="#6f7d52" stroke-width="1.1" opacity="0.7"/>
+    <circle cx="858" cy="372" r="232" stroke="#c2a14a" stroke-width="1" opacity="0.5"/>
+  </g>
+  <circle cx="858" cy="372" r="56" fill="#f3d98a" opacity="0.6"/>
+  <circle cx="858" cy="372" r="56" fill="none" stroke="#d9b24e" stroke-width="1.6" opacity="0.55"/>
+
+  <!-- 田壟：向光收束的田 -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M70 690 Q520 560 840 472" stroke="#8c6a40" stroke-width="5" opacity="0.5"/>
+    <path d="M40 628 Q500 540 836 468" stroke="#9c7445" stroke-width="4" opacity="0.5"/>
+    <path d="M120 560 Q520 516 840 470" stroke="#a87f4f" stroke-width="3" opacity="0.45"/>
+    <path d="M1180 690 Q980 580 880 478" stroke="#8c6a40" stroke-width="4.5" opacity="0.45"/>
+    <path d="M1180 612 Q1000 540 884 470" stroke="#9c7445" stroke-width="3.2" opacity="0.4"/>
+  </g>
+
+  <!-- 回家的路(自我—自性軸) -->
+  <path d="M330 588 Q560 540 840 478" fill="none" stroke="#d9b87e" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 12" opacity="0.7"/>
+
+  <!-- 阿禾：路上的小苗(擺渡者) -->
+  <g stroke-linecap="round" stroke-linejoin="round" transform="translate(548,512)">
+    <path d="M0 26 C0 14 0 6 0 -6" stroke="#6f7d52" stroke-width="3" fill="none"/>
+    <path d="M0 8 C-12 7 -20 1 -22 -10 C-10 -10 -2 -3 0 8Z" fill="#6f7d52" opacity="0.9"/>
+    <path d="M0 1 C12 0 20 -7 22 -17 C10 -16 1 -9 0 1Z" fill="#8a9a63"/>
+    <circle cx="0" cy="-9" r="4.6" fill="#e7b659"/><circle cx="0" cy="-9" r="1.8" fill="#fff6df"/>
+  </g>
+
+  <!-- 老屋門框(左前景) -->
+  <g stroke="#9c5f38" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+    <!-- 牆 + 屋頂 -->
+    <path d="M120 300 L250 230 L380 300" stroke-width="4"/>
+    <path d="M150 296 L150 600 L350 600 L350 296" stroke-width="4" fill="#f3ead9" fill-opacity="0.35"/>
+    <!-- 門洞(開著,透出田與光) -->
+    <path d="M214 600 L214 388 Q250 364 286 388 L286 600" stroke-width="3.5" fill="#faf6ef"/>
+    <!-- 門邊一點窗光 -->
+    <rect x="305" y="356" width="26" height="30" rx="2" fill="#c2a14a" fill-opacity="0.45" stroke="none"/>
+    <path d="M318 356 L318 386 M305 371 L331 371" stroke-width="1.6" opacity="0.6"/>
+  </g>
+
+  <!-- 豆子：門口的背影(自我) -->
+  <g stroke="#5c4732" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M232 588 C226 540 220 480 234 432 C242 412 258 412 266 432 C280 480 274 540 268 588 Z" fill="#cf9b6e"/>
+    <circle cx="250" cy="410" r="20" fill="#ecd6bb"/>
+    <path d="M236 400 C240 388 260 388 264 400" fill="#5c4732" stroke="none"/>
+  </g>
+
+  <!-- 飄塵 -->
+  <g fill="#c2a14a" opacity="0.45">
+    <circle cx="640" cy="220" r="2.6"/><circle cx="980" cy="200" r="2.2"/>
+    <circle cx="720" cy="150" r="1.8"/><circle cx="500" cy="250" r="1.8"/><circle cx="1040" cy="300" r="1.6"/>
+  </g>
+</svg>
