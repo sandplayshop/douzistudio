@@ -1653,6 +1653,14 @@ if(land){document.querySelectorAll('.hut').forEach(function(hut){
     "創意靈感屋":"Inspiration Cabin",
     "共學成長實驗小屋":"Growth-Lab Cabin",
     "電腦:滑過小屋預覽、點一下進入;手機:點小屋,介紹就在下面展開。":"On desktop: hover to preview, click to enter. On mobile: tap a cabin and its intro opens below.",
+    "沙盤、象徵、夢與潛意識。把說不出口的,放進沙裡,讓它慢慢說話。":"Sand, symbols, dreams and the unconscious. Place what can't be spoken into the sand, and let it slowly speak.",
+    "一杯咖啡的距離——我和 AI 一起對談、一起共寫,慢慢把想法理清。":"A coffee's distance — talking and writing with AI, slowly clearing the thoughts.",
+    "畫畫、塗鴉、木工、沙遊小物、把想法做成能用的東西——讓靈感落地。":"Drawing, doodling, woodwork, sandplay figures — turning ideas into things you can use, letting inspiration land.",
+    "一起學、一起長、一起試——陪跑、線上課程、工作坊,都在這裡開門。":"Learning, growing, experimenting together — mentoring, online courses, workshops, all open here.",
+    "認識這塊心田":"Meet this Heart Farm",
+    "來一場整地":"Come work the land",
+    "去造物坊看看":"Visit the Creative Studio",
+    "認識陪跑":"About Mentoring",
     "田間的日記":"Diary from the field",
     "今天種了什麼、哪一株長得好、哪一株沒活——誠實地寫下來。":"What I planted. What thrived. What didn't. Write it down — honestly.",
     "即將":"Coming soon",
@@ -1705,7 +1713,9 @@ if(land){document.querySelectorAll('.hut').forEach(function(hut){
       }
     }
   }
+  var _busy=false;
   function apply(lang){
+    _busy=true;
     window.XTLANG=lang;
     for(var sel in HTML_EN){
       var els=document.querySelectorAll(sel);
@@ -1729,12 +1739,34 @@ if(land){document.querySelectorAll('.hut').forEach(function(hut){
     var tg=document.querySelectorAll(".lang-toggle");
     for(var j=0;j<tg.length;j++) tg[j].textContent=(lang==="en")?"中文":"EN";
     if(window.loadDiary) window.loadDiary();
+    _busy=false;
   }
   window.setSiteLang=apply;
   document.addEventListener("click", function(e){
     var b=e.target.closest && e.target.closest(".lang-toggle");
     if(b){ e.preventDefault(); apply((window.XTLANG==="en")?"zh":"en"); }
   });
+  /* 之後才生出來的中文(小屋卡片、訂閱訊息等)在 EN 模式下也自動翻 */
+  function tNode(n){
+    if(!n || n.nodeType!==3) return;
+    var t=(n.nodeValue||"").trim(); if(!t) return;
+    if(DICT[t]!==undefined){ if(n.__zh===undefined) n.__zh=n.nodeValue; n.nodeValue=n.nodeValue.replace(t, DICT[t]); }
+  }
+  try{
+    var mo=new MutationObserver(function(muts){
+      if(window.XTLANG!=="en" || _busy) return;
+      _busy=true;
+      for(var i=0;i<muts.length;i++){ var m=muts[i];
+        if(m.type==="characterData"){ tNode(m.target); }
+        else { for(var k=0;k<m.addedNodes.length;k++){ var node=m.addedNodes[k];
+          if(node.nodeType===3) tNode(node);
+          else if(node.nodeType===1){ var tg=node.tagName; if(tg!=="SCRIPT"&&tg!=="STYLE") walk(node, tNode); }
+        } }
+      }
+      _busy=false;
+    });
+    mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+  }catch(e){}
   var saved="zh"; try{ saved=localStorage.getItem("xtlang")||"zh"; }catch(e){}
   if(saved==="en"){ apply("en"); } else { window.XTLANG="zh"; }
 })();
