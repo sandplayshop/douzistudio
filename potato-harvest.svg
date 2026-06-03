@@ -1,0 +1,63 @@
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一雙農夫的手，捧著一籃剛從土裡收成的馬鈴薯">
+  <defs>
+    <radialGradient id="hglow" cx="50%" cy="44%" r="55%">
+      <stop offset="0%" stop-color="#f3d98a" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#f3d98a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hbasket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cf9f64"/><stop offset="100%" stop-color="#a9753f"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" fill="#faf6ef"/>
+  <ellipse cx="320" cy="186" rx="300" ry="180" fill="url(#hglow)"/>
+
+  <!-- 田壟 -->
+  <g stroke="#b98f5d" fill="none" stroke-linecap="round" opacity="0.55">
+    <path d="M70 374 Q320 360 570 374" stroke-width="2"/>
+    <path d="M120 398 Q320 388 520 398" stroke-width="1.4" opacity="0.7"/>
+  </g>
+
+  <!-- 前臂(袖) + 手，由下方捧起 -->
+  <g stroke="#5c4732" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M44 418 C72 372 112 340 170 316 L198 350 C152 374 120 398 98 420 Z" fill="#cf9b6e"/>
+    <path d="M170 314 C152 302 152 284 172 277 C200 272 226 290 250 304 C228 322 198 328 170 314 Z" fill="#ecd6bb"/>
+    <path d="M596 418 C568 372 528 340 470 316 L442 350 C488 374 520 398 542 420 Z" fill="#cf9b6e"/>
+    <path d="M470 314 C488 302 488 284 468 277 C440 272 414 290 390 304 C412 322 442 328 470 314 Z" fill="#ecd6bb"/>
+  </g>
+
+  <!-- 籃身 -->
+  <path d="M198 214 C206 286 252 322 320 322 C388 322 434 286 442 214 Z" fill="url(#hbasket)" stroke="#8a5a30" stroke-width="3" stroke-linejoin="round"/>
+  <g stroke="#7c4f2a" stroke-width="1.3" fill="none" opacity="0.4" stroke-linecap="round">
+    <path d="M232 230 C238 270 262 296 298 308"/>
+    <path d="M320 234 L320 320"/>
+    <path d="M408 230 C402 270 378 296 342 308"/>
+    <path d="M212 250 Q320 274 428 250"/>
+    <path d="M224 286 Q320 308 416 286"/>
+  </g>
+  <!-- 籃口 -->
+  <ellipse cx="320" cy="214" rx="124" ry="24" fill="#d8a86a" stroke="#8a5a30" stroke-width="3"/>
+  <ellipse cx="320" cy="214" rx="124" ry="24" fill="none" stroke="#e7c694" stroke-width="1" opacity="0.6"/>
+
+  <!-- 馬鈴薯(堆在籃裡,高出籃口) -->
+  <g stroke="#9c7445" stroke-width="2">
+    <ellipse cx="272" cy="206" rx="32" ry="23" fill="#cd9e6e"/>
+    <ellipse cx="334" cy="212" rx="34" ry="24" fill="#c89669"/>
+    <ellipse cx="386" cy="202" rx="30" ry="22" fill="#cd9e6e"/>
+    <ellipse cx="302" cy="176" rx="30" ry="22" fill="#d3a574"/>
+    <ellipse cx="356" cy="178" rx="28" ry="21" fill="#c89669"/>
+    <ellipse cx="330" cy="152" rx="27" ry="20" fill="#d3a574"/>
+  </g>
+  <g fill="#8c6a40">
+    <circle cx="264" cy="200" r="2.6"/><circle cx="286" cy="212" r="2.2"/>
+    <circle cx="340" cy="206" r="2.6"/><circle cx="322" cy="220" r="2.2"/>
+    <circle cx="392" cy="200" r="2.4"/><circle cx="302" cy="172" r="2.4"/>
+    <circle cx="354" cy="184" r="2.2"/><circle cx="332" cy="150" r="2.4"/>
+  </g>
+  <!-- 一片葉(剛從土裡來) -->
+  <path d="M404 166 C424 154 444 156 458 148 C450 166 432 178 410 178 Z" fill="#8a9a63" opacity="0.9"/>
+  <path d="M408 174 C424 166 440 158 452 150" stroke="#6f7d52" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+
+  <g fill="#c2a14a" opacity="0.4">
+    <circle cx="182" cy="150" r="2.2"/><circle cx="468" cy="138" r="1.8"/><circle cx="152" cy="222" r="1.6"/>
+  </g>
+</svg>

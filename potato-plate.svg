@@ -1,0 +1,49 @@
+<svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一盤家常菜：帶皮蒸馬鈴薯、番茄、青菜與紅蘿蔔，冒著熱氣——好好吃一頓飯">
+  <defs>
+    <radialGradient id="pglow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#f3d98a" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#f3d98a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="420" fill="#faf6ef"/>
+  <ellipse cx="320" cy="232" rx="300" ry="180" fill="url(#pglow)"/>
+
+  <!-- 熱氣 -->
+  <g stroke="#b8a98a" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.4">
+    <path d="M284 250 C274 224 294 212 284 186 C276 166 292 152 286 132"/>
+    <path d="M330 244 C322 220 340 208 332 184 C326 166 340 152 336 134"/>
+    <path d="M376 250 C368 226 386 214 378 190 C372 172 386 158 382 140"/>
+  </g>
+
+  <!-- 盤子 -->
+  <ellipse cx="320" cy="300" rx="212" ry="70" fill="#fffdf8" stroke="#cdbb98" stroke-width="2.4"/>
+  <ellipse cx="320" cy="300" rx="170" ry="52" fill="none" stroke="#e2d5b8" stroke-width="1.6"/>
+
+  <!-- 青菜(後) -->
+  <g stroke="#5f6e44" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M352 288 C338 264 352 246 372 246 C392 246 404 266 392 288 C378 302 364 300 352 288 Z" fill="#6f7d52"/>
+    <path d="M372 248 C374 264 374 278 372 288" fill="none" stroke="#52663a"/>
+    <path d="M392 286 C404 270 418 264 430 266 C424 284 408 294 392 292 Z" fill="#8a9a63"/>
+  </g>
+
+  <!-- 番茄(右) -->
+  <circle cx="438" cy="300" r="30" fill="#c5603f" stroke="#9c4429" stroke-width="2.4"/>
+  <path d="M427 275 l6 8 5 -8 6 8 5 -7" fill="none" stroke="#6f7d52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="430" cy="292" r="5" fill="#e08a64" opacity="0.7"/>
+
+  <!-- 帶皮蒸馬鈴薯(主角,左中) -->
+  <ellipse cx="248" cy="300" rx="46" ry="34" fill="#cd9e6e" stroke="#9c7445" stroke-width="2.6"/>
+  <g fill="#8c6a40"><circle cx="226" cy="294" r="2.6"/><circle cx="262" cy="308" r="2.4"/><circle cx="242" cy="286" r="2.2"/></g>
+  <path d="M248 266 A46 34 0 0 1 290 304 A18 13 0 0 0 248 302 Z" fill="#e7c694" opacity="0.5"/>
+
+  <!-- 小薯 + 香草 -->
+  <ellipse cx="306" cy="318" rx="26" ry="19" fill="#d3a574" stroke="#9c7445" stroke-width="2.2"/>
+  <path d="M300 307 c-6 -8 -2 -16 6 -18 m-3 9 c4 -4 10 -4 14 -1" fill="none" stroke="#6f7d52" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- 紅蘿蔔(前) -->
+  <path d="M330 332 L388 350 C392 351 392 357 386 357 L328 344 Z" fill="#c8843c" stroke="#a5662a" stroke-width="2.2" stroke-linejoin="round"/>
+  <g stroke="#a5662a" stroke-width="1.2" opacity="0.6"><path d="M348 340 l-3 6"/><path d="M362 344 l-3 6"/></g>
+  <path d="M328 340 c-10 -4 -18 -2 -24 4 m24 -4 c-8 -6 -16 -8 -24 -6" fill="none" stroke="#6f7d52" stroke-width="2" stroke-linecap="round"/>
+
+  <g fill="#c2a14a" opacity="0.4"><circle cx="150" cy="202" r="2"/><circle cx="500" cy="202" r="1.8"/></g>
+</svg>
