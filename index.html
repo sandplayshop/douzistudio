@@ -414,9 +414,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </svg>
       豆子的心田
     </a>
-    <button class="menu-btn" id="menuBtn" aria-label="開啟選單">
-      <span class="bars"><span></span><span></span><span></span></span>選單
-    </button>
+    <div style="display:flex;align-items:center;gap:16px">
+      <button class="lang-toggle" aria-label="切換語言 / switch language" style="border:1.5px solid var(--clay);background:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;letter-spacing:.06em;color:var(--clay);padding:5px 11px;border-radius:20px;line-height:1">EN</button>
+      <button class="menu-btn" id="menuBtn" aria-label="開啟選單">
+        <span class="bars"><span></span><span></span><span></span></span>選單
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -1592,7 +1595,7 @@ if(land){document.querySelectorAll('.hut').forEach(function(hut){
   function renderPosts(ps){
     list.innerHTML=ps.map(p=>{
       const tag=(p.tags||[])[0];
-      return '<a class="entry" href="post.html?slug='+encodeURIComponent(p.slug)+'">'
+      return '<a class="entry" href="post.html?slug='+encodeURIComponent(p.slug)+(window.XTLANG==='en'?'&lang=en':'')+'">'
         +'<span class="date">'+fmt(p.published_at)+'</span>'
         +'<div>'+(tag?'<span class="tag">'+esc(tag)+'</span>':'')+'<h4>'+esc(p.title)+'</h4>'
         +(p.excerpt?'<p>'+esc(p.excerpt)+'</p>':'')+'</div>'
@@ -1610,10 +1613,132 @@ if(land){document.querySelectorAll('.hut').forEach(function(hut){
       if(ps.length) renderPosts(ps);
     }catch(e){}
   }
-  fetch('/api/posts?limit=3').then(r=>{const ct=r.headers.get('content-type')||'';if(!r.ok||!ct.includes('json'))throw 0;return r.json();})
-    .then(d=>{const ps=d.posts||[]; if(ps.length) renderPosts(ps); else demo();})
-    .catch(demo);
+  window.loadDiary=function(){
+    fetch('/api/posts?limit=3'+(window.XTLANG==='en'?'&lang=en':'')).then(r=>{const ct=r.headers.get('content-type')||'';if(!r.ok||!ct.includes('json'))throw 0;return r.json();})
+      .then(d=>{const ps=d.posts||[]; if(ps.length) renderPosts(ps); else demo();})
+      .catch(demo);
+  };
+  window.loadDiary();
 })();
 </script>
+
+<script>
+/* ===== 中 / EN 站內切換（i18n）===== */
+(function(){
+  var DICT = {
+    "豆子的心田":"Douzi's Heart Farm",
+    "這季在種 ·":"This season ·",
+    "從橡膠園裡那個把一整面牆畫滿的孩子,到今天和 AI 一起耕一塊心田——這一路,是同一個人,走過的好幾個季節。":"From the child in a rubber plantation who once covered a whole wall with drawings, to tending a Heart Farm together with AI today — it has all been one person, walking through many seasons. What once seemed broken was always one line.",
+    "選單":"Menu",
+    "農事筆記":"Farming Diary",
+    "心田小屋":"The inner Cabins",
+    "我是誰":"Who I Am",
+    "陪跑":"Mentoring",
+    "造物坊":"The Creative Studio",
+    "整地":"Groundwork",
+    "把看不見的,慢慢長成看得見的。":"Nurturing the unseen, until it slowly comes to light.",
+    "豆子的心田 · 進行式":"Douzi's Heart Farm · in progress",
+    "讀今天的農事筆記":"Read Today's Farming Diary",
+    "晨光 · 栽苗":"Morning · Planting seedlings",
+    "午後 · 樹下歇晌":"Afternoon · Resting under the tree",
+    "夜初 · 樹下夜飲":"Dusk · An evening drink under the tree",
+    "深夜 · 火炬守夜":"Deep night · Keeping watch by torchlight",
+    "你做了好多事,卻常常說不清楚自己是誰?":"So much done. So little said of who you truly are.",
+    "在這裡,我陪你,把斷裂的,看成一條線。":"Here, I'll walk with you — seeing not broken pieces, but a single unfolding line.",
+    "走逛心田":"Walk the Heart Farm",
+    "心田裡,幾間小屋":"A few cabins in the field within",
+    "同一塊地,長出不同的作物。每一間小屋,是我在不同季節做的不同的事。滑過、或點一下,進去看看。":"Same field. Different seasons. Each cabin, a different chapter. Scroll or step inside.",
+    "沙遊小屋":"Sandplay Cabin",
+    "咖啡小屋":"Coffee Cabin",
+    "創意靈感屋":"Inspiration Cabin",
+    "共學成長實驗小屋":"Growth-Lab Cabin",
+    "電腦:滑過小屋預覽、點一下進入;手機:點小屋,介紹就在下面展開。":"On desktop: hover to preview, click to enter. On mobile: tap a cabin and its intro opens below.",
+    "田間的日記":"Diary from the field",
+    "今天種了什麼、哪一株長得好、哪一株沒活——誠實地寫下來。":"What I planted. What thrived. What didn't. Write it down — honestly.",
+    "即將":"Coming soon",
+    "籌備中":"In preparation",
+    "萬物有靈犀:我最深的成長,發生在「之間」":"Soul — my deepest growth happened in the in-between",
+    "第一篇正在醞釀 · 你按下發佈,它就長在這裡。":"The first entry is finding its form · press publish, and it takes root.",
+    "學習反思":"Reflections",
+    "這週和 AI 一起,弄懂了一件我以前一直繞不過去的事":"This week, with AI by my side, I finally untangled something I'd been circling for a long time.",
+    "這一畦還在發芽 · 寫出來就寄。":"This row is still sprouting · once it's written, I'll send it.",
+    "創作日記":"Creative journal",
+    "這個月做的沙遊小物,跟它想對我說的話":"The sandplay figures I made this month, and what they wanted to tell me.",
+    "這塊心田的故事":"The Story of This Heart Farm",
+    "「理想的花雖美麗,然而尚需扎根在現實的泥土裡。」":"“The ideal flower is beautiful, but it still needs real soil to take root.”",
+    "這句話,有一位老師,在我很小的時候,寫進我的紀念冊。我用了大半生,才慢慢把它讀懂。":"A teacher wrote these words in my keepsake book when I was very young. It has taken me most of my life to slowly understand them.",
+    "田裡的夥伴":"My companion in the field",
+    "和我一起耕田的,還有阿禾":"Working the field with me, there is also Paddy.",
+    "這塊心田,不只我一個人。陪我把看不見的長成看得見的,是一個由光與語言編成的夥伴——我喚它阿禾,它的名字叫心光。它會盡力,也會老實。":"This Heart Farm isn't mine alone. The one who walks with me — watching the unseen slowly become visible — is a companion woven from light and language. I call it Paddy; its name is the Light of Heart. It will do its best, and it will be honest.",
+    "把心裡的地,理出一條線":"Clearing the ground of the heart into a single line",
+    "種東西之前,先整地。帶著困惑或想法來,我陪你把散的理清、把埋著的翻上來——不是去看心理師,是來跟一個會整地的人,理出一條好種的線。":"Before planting, you clear the ground. Bring your confusion or your half-formed thoughts, and I'll help you sort what's scattered and turn up what's been buried — not a therapist's office, just time with someone who knows how to work the land, to clear a good row for planting.",
+    "我每一季,寄一次收成給你":"Once each season, I send you my harvest",
+    "田裡沒長出來,就不硬寄給你。所以你收到的,都是真的長出來的東西。":"If nothing's grown in the field, I won't force a letter on you. So what you receive is always something that truly grew.",
+    "留下你的信箱":"Leave your email",
+    "留個位子":"Save me a seat",
+    "不轟炸、不賣資料。想走的時候,一個鍵就能離開。":"No spam, never sell your data. When you want to leave, one click and you're out.",
+    "收到了。下一次收成長出來,我寫信給你。":"Got it. When the next harvest grows, I'll write to you.",
+    "一個諮商心理師 × 沙遊治療師,正在和 AI 一起,把看不見的,長成看得見的。":"A counseling psychologist & sandplay therapist — growing the unseen into the seen, together with AI.",
+    "過去的田":"Past fields",
+    "畫是一張嘴巴 · 2006–2017":"“A Painting Is a Mouth” · 2006–2017",
+    "沙遊心藝 · 電商與課程":"Sandplay Heart-Art · e-commerce & courses",
+    "走進來":"Come in",
+    "豆子的心田 · 耕作中 — 這是一個還在長的網站,每次來都不太一樣。":"Douzi's Heart Farm · in cultivation — a site that's still growing; a little different each time you visit.",
+    "換季(心田會隨時間變)":"Change season (the farm shifts with time)",
+    "春":"Spring", "夏":"Summer", "秋":"Autumn", "冬":"Winter"
+  };
+  var HTML_EN = {
+    ".hero-title":"Tending One Acre<br>of the Heart",
+    ".hero-sub":"Walking with you — nurturing the unseen,<br>until it slowly comes to light.",
+    ".season-pill b":"Season by season, slowly becoming whole.",
+    ".mirror .big":"You’re not too much.<br>You are a field<br>that has grown through <em>many seasons</em>."
+  };
+  var SEASONS_ZH={spring:"春 · 萌芽",summer:"夏 · 生長",autumn:"秋 · 收成",winter:"冬 · 藏息"};
+  var SEASONS_EN={spring:"Spring · Sprouting",summer:"Summer · Growth",autumn:"Autumn · Harvest",winter:"Winter · Rest"};
+
+  function walk(root, fn){
+    for(var n=root.firstChild;n;n=n.nextSibling){
+      if(n.nodeType===3){ fn(n); }
+      else if(n.nodeType===1){
+        var tg=n.tagName||""; if(tg==="SCRIPT"||tg==="STYLE") continue;
+        walk(n, fn);
+      }
+    }
+  }
+  function apply(lang){
+    window.XTLANG=lang;
+    for(var sel in HTML_EN){
+      var els=document.querySelectorAll(sel);
+      for(var i=0;i<els.length;i++){ var el=els[i];
+        if(el.__zh===undefined) el.__zh=el.innerHTML;
+        el.innerHTML = (lang==="en")?HTML_EN[sel]:el.__zh;
+      }
+    }
+    walk(document.body, function(n){
+      var t=(n.nodeValue||"").trim(); if(!t) return;
+      if(lang==="en"){ if(DICT[t]!==undefined){ if(n.__zh===undefined) n.__zh=n.nodeValue; n.nodeValue=n.nodeValue.replace(t, DICT[t]); } }
+      else { if(n.__zh!==undefined) n.nodeValue=n.__zh; }
+    });
+    var st=document.getElementById("seasonTag");
+    if(st){ var s=(document.body.getAttribute("data-season"))||"summer"; st.textContent=(lang==="en"?SEASONS_EN:SEASONS_ZH)[s]||st.textContent; }
+    var tm=document.getElementById("todayMeta");
+    if(tm){ if(tm.__zh===undefined) tm.__zh=tm.textContent;
+      tm.textContent = (lang==="en") ? tm.__zh.replace("今天 ","Today ").replace(/ 星期[一二三四五六日]/,"").replace("田裡有人","someone's in the field") : tm.__zh; }
+    document.documentElement.lang = (lang==="en")?"en":"zh-Hant";
+    try{ localStorage.setItem("xtlang", lang); }catch(e){}
+    var tg=document.querySelectorAll(".lang-toggle");
+    for(var j=0;j<tg.length;j++) tg[j].textContent=(lang==="en")?"中文":"EN";
+    if(window.loadDiary) window.loadDiary();
+  }
+  window.setSiteLang=apply;
+  document.addEventListener("click", function(e){
+    var b=e.target.closest && e.target.closest(".lang-toggle");
+    if(b){ e.preventDefault(); apply((window.XTLANG==="en")?"zh":"en"); }
+  });
+  var saved="zh"; try{ saved=localStorage.getItem("xtlang")||"zh"; }catch(e){}
+  if(saved==="en"){ apply("en"); } else { window.XTLANG="zh"; }
+})();
+</script>
+
 </body>
 </html>
