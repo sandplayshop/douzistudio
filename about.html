@@ -258,6 +258,6 @@ menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
-<script src="xtlang.js"></script>
+<script src="xtlang.js?v=2"></script>
 </body>
 </html>
