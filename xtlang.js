@@ -13,7 +13,7 @@
     "心田小屋":"The inner Cabins",
     "← 回心田":"← Back to the Heart Farm",
     "回心田":"Back to the Heart Farm",
-    "沙遊心藝工作室 · 統一編號 76392596":"Sandplay Heart-Art Studio · Tax ID 76392596",
+    "沙遊心藝工作室 · 統一編號 76392596":"Sandplay Creative Studio · Tax ID 76392596",
     "把看不見的,慢慢長成看得見的":"Nurturing the unseen, until it slowly comes to light",
     "田間的日記":"Diary from the field",
     "今天種了什麼、哪一株長得好、哪一株沒活——誠實地寫下來。寫出來的,都是真的長出來的東西。":"What I planted, which seedling thrived, which didn't — written down honestly. What gets written is always something that truly grew.",
