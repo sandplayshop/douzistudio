@@ -94,6 +94,14 @@ a{color:inherit; text-decoration:none}
 .crop p{font-size:13.8px; color:var(--ink-soft); margin-top:8px; line-height:1.7}
 .crop .go{display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:13px; color:var(--clay); font-weight:500}
 .crop:hover .go{gap:9px}
+.crop.feature{grid-column:1/-1; display:flex; gap:26px; align-items:center; background:linear-gradient(135deg, color-mix(in oklab,var(--sprout) 8%, var(--paper2)), var(--paper2)); border-color:color-mix(in oklab,var(--sprout) 32%, var(--line))}
+.crop.feature .feat-emblem{flex:0 0 auto; width:66px; height:66px; display:flex; align-items:center; justify-content:center; border-radius:18px; background:color-mix(in oklab,var(--sprout) 14%, var(--paper)); color:var(--sprout)}
+.crop.feature .feat-emblem svg{width:38px; height:38px}
+.crop.feature .feat-body{flex:1; min-width:0}
+.crop.feature h4{margin-top:10px}
+.crop .tag{display:inline-flex; align-items:center; gap:6px; font-size:12px; letter-spacing:.04em; color:var(--clay); font-weight:600; background:color-mix(in oklab,var(--clay) 12%, var(--paper2)); border:1px solid color-mix(in oklab,var(--clay) 26%, var(--line)); border-radius:999px; padding:4px 11px}
+.crop .tag svg{width:13px; height:13px}
+@media(max-width:760px){.crop.feature{flex-direction:column; align-items:flex-start; gap:16px}}
 .aside{margin-top:22px; font-size:14px; color:var(--muted); border-left:2px solid var(--line); padding-left:14px; line-height:1.75}
 
 /* contact */
@@ -243,8 +251,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>2000+ 題,陪考生一題一題,練到會。</p>
         <span class="go">去看看 →</span>
       </a>
+      <a class="crop feature reveal" href="https://learntrading.douzistudio.com" target="_blank" rel="noopener">
+        <div class="feat-emblem">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M8 39h32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 34l8-7 6 4 11-13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 18c0-4 3.2-7 7-7 0 4-3.2 7-7 7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="34" r="1.7" fill="currentColor"/><circle cx="24" cy="31" r="1.7" fill="currentColor"/></svg>
+        </div>
+        <div class="feat-body">
+          <span class="tag"><svg viewBox="0 0 16 16" fill="none"><path d="M8 14V6M8 6C8 3.8 6.2 2 4 2c0 2.2 1.8 4 4 4zM8 7c0-1.7 1.3-3 3-3 0 1.7-1.3 3-3 3z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>公開的成長筆記</span>
+          <h4>learntrading · 和 AI 一起練交易</h4>
+          <p>不是賣你交易,是讓你看見:一個人怎麼和 AI 一起,把一件難的事練到會。</p>
+          <span class="go">去看看 →</span>
+        </div>
+      </a>
     </div>
-    <p class="aside reveal">也接金融工具與資料儀表板開發 —— 這類案例性質較私密,合作時再單獨提供。</p>
+    <p class="aside reveal">也接金融工具與資料儀表板開發 —— 成品案例性質較私密,合作時再單獨提供;但「和 AI 一起把交易練起來的過程」,我攤開在上面那塊田(learntrading)給你看。</p>
   </div>
 </section>
 
