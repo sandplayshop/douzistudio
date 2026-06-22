@@ -76,6 +76,9 @@ a{color:inherit; text-decoration:none}
 .mv p{margin-top:16px; font-size:16.5px; line-height:1.95; color:var(--ink-soft); text-wrap:pretty}
 .mv p strong{color:var(--ink); font-weight:600}
 .mv .note{font-size:13.5px; color:var(--muted); border-left:2px solid var(--line); padding-left:14px; margin-top:18px}
+.mv-fig{margin:24px 0 8px; border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-sm); background:var(--paper2)}
+.mv-fig img{display:block; width:100%; height:auto}
+.mv-fig figcaption{font-size:12.5px; color:var(--muted); padding:9px 16px 11px; font-family:"Noto Serif TC",serif; letter-spacing:.02em}
 
 /* cta + footer */
 .btn{display:inline-flex; align-items:center; gap:10px; padding:15px 26px; border-radius:38px; font-size:15.5px; font-weight:500; cursor:pointer; border:0; transition:.32s cubic-bezier(.2,.7,.2,1); font-family:inherit}
@@ -149,7 +152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="col">
     <a href="index.html" class="back reveal">← 回心田</a>
     <div class="reveal"><span class="eyebrow">我是誰</span></div>
-    <h1 class="about-title serif reveal">這塊心田的故事</h1>
+    <h1 class="about-title serif reveal" data-en="The Story of This Heart Farm">這塊心田的故事</h1>
     <div class="story-epi reveal">
       <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
         <path d="M14 50 H46" stroke="#b98f5d" stroke-width="2" stroke-linecap="round"/>
@@ -167,8 +170,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <circle cx="30" cy="19.6" r="1.5" fill="#fff6df"/>
       </svg>
       <div>
-        <div class="qt">「理想的花雖美麗,然而尚需扎根在現實的泥土裡。」</div>
-        <div class="qm">這句話,有一位老師,在我很小的時候,畫了一棵開花的小樹苗,寫進我的紀念冊。那時我看不懂。我用了大半生,才慢慢把它讀懂。</div>
+        <div class="qt" data-en="“The flower of dream is beautiful, but it still needs real soil to take root.”">「理想的花雖美麗,然而尚需扎根在現實的泥土裡。」</div>
+        <div class="qm" data-en="When I was little, a teacher drew a small flowering sapling and wrote this line into my keepsake book. I didn't understand it then. It took a lifetime of seasons to finally grow into what it meant.">這句話,有一位老師,在我很小的時候,畫了一棵開花的小樹苗,寫進我的紀念冊。那時我看不懂。我用了大半生,才慢慢把它讀懂。</div>
       </div>
     </div>
   </div>
@@ -179,8 +182,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="story-video reveal">
     <div class="vid-head">
-      <span class="eyebrow">影片版 · 用聽的</span>
-      <p class="vid-hint">想用聽的,就按播放;想用讀的,往下捲。</p>
+      <span class="eyebrow" data-en="VIDEO VERSION · PREFER TO LISTEN?">影片版 · 用聽的</span>
+      <p class="vid-hint" data-en="Rather listen than read? Hit play. Otherwise, just keep scrolling.">想用聽的,就按播放;想用讀的,往下捲。</p>
     </div>
     <div class="video-stage">
       <iframe src="https://www.youtube.com/embed/NwFdctqJDO0" title="這塊心田的故事"
@@ -191,50 +194,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <div class="mv reveal">
-    <h3 class="mv-h serif"><span class="n">一</span>最早的土:在橡膠園,我什麼都可以</h3>
-    <p>我是在橡膠園裡長大的。爸媽忙於生計,沒能力送我去才藝班,卻給了我一整片可以亂跑的天地。我撿樹枝當玩具,自己發明各種遊戲;蹲著看蝌蚪、蜻蜓、毛毛蟲、一窩鳥蛋——一個人,也能玩上一整天。</p>
-    <p>有一次,我拿起蠟筆,把一整面牆畫滿了。爸媽沒有罵我。他們用自己的方式,把那面牆<strong>留了下來</strong>,讓長大的我,有一天能回頭看看。那時我得意地想:「哇,我真是個大畫家。」當然,後來才知道那畫技根本不成熟——可那份「我可以」,成了我一生最珍貴的底氣。</p>
-    <p>長大以後我才懂:他們留下的不只是一面牆,是一份<strong>「你被信任、被接納」</strong>的禮物。</p>
+    <h3 class="mv-h serif" data-en="<span class='n'>One</span>The first soil: on the rubber plantation, anything felt possible"><span class="n">一</span>最早的土:在橡膠園,我什麼都可以</h3>
+    <figure class="mv-fig"><img src="pic/about-1-rubber-plantation.jpg" alt="小女孩赤腳在橡膠園裡奔跑,手拿樹枝追蝴蝶,樹幹上有她畫的蠟筆畫" loading="lazy" decoding="async"><figcaption data-en="A whole grove to run wild in — and the wall they chose to keep.">一整片可以亂跑的天地——和那面被留下來的牆。</figcaption></figure>
+    <p data-en="I grew up on a rubber plantation. My parents were too busy making a living to send me to after-school classes — but they gave me something better: a whole stretch of land to run wild in. Sticks became my toys, I invented my own games, and I'd crouch for ages watching tadpoles, dragonflies, caterpillars, a nest of eggs. Even by myself, I could play all day long.">我是在橡膠園裡長大的。爸媽忙於生計,沒能力送我去才藝班,卻給了我一整片可以亂跑的天地。我撿樹枝當玩具,自己發明各種遊戲;蹲著看蝌蚪、蜻蜓、毛毛蟲、一窩鳥蛋——一個人,也能玩上一整天。</p>
+    <p data-en="One day I took my crayons and covered an entire wall with drawings. My parents didn't get angry. In their own quiet way, they <strong>kept</strong> that wall, so that one day the grown-up me could come back and look at it. At the time I thought proudly, “Wow, I'm a real artist!” Of course, I later realized how clumsy those drawings were — but that feeling of “I can do this” became the deepest source of confidence in my life.">有一次,我拿起蠟筆,把一整面牆畫滿了。爸媽沒有罵我。他們用自己的方式,把那面牆<strong>留了下來</strong>,讓長大的我,有一天能回頭看看。那時我得意地想:「哇,我真是個大畫家。」當然,後來才知道那畫技根本不成熟——可那份「我可以」,成了我一生最珍貴的底氣。</p>
+    <p data-en="It was only as an adult that I understood: what they kept wasn't just a wall. It was a gift — <strong>the sense that “you are trusted, you are accepted.”</strong>">長大以後我才懂:他們留下的不只是一面牆,是一份<strong>「你被信任、被接納」</strong>的禮物。</p>
   </div>
 
   <div class="mv reveal">
-    <h3 class="mv-h serif"><span class="n">二</span>現實有它的重量:得不到,我就自己造一個</h3>
-    <p>後來我走進了學校。那裡的世界,不像橡膠園那樣任我奔跑——它有比較、有競爭,有一道一道看不見的階。我來自一個普通的家庭,沒有那些先天的優勢;很多路,我得比別人多繞幾圈,才走得到。</p>
-    <p>可我沒有停下來。同學流行紙飛鏢,我就做一整疊,天真地等著有人來買;我好奇一份讀物為什麼能讓人人訂閱,就自己動手編一份;我想長大、想被鼓勵,就自己去找心靈成長的書來讀。<strong>得不到的,我就自己造一個。</strong></p>
-    <p>也是那幾年,我透過書信交朋友,愛上了用文字和人相遇。一位筆友,因為珍惜、因為不想將來走散,送了我一個名字——<strong>「豆子」</strong>。我一直用到今天。</p>
+    <h3 class="mv-h serif" data-en="<span class='n'>Two</span>Real life has its weight: if I couldn't get it, I made it myself"><span class="n">二</span>現實有它的重量:得不到,我就自己造一個</h3>
+    <figure class="mv-fig"><img src="pic/about-2-make-it-myself.jpg" alt="學齡女孩在書桌前摺一疊紙飛機、自製刊物、寫信給筆友" loading="lazy" decoding="async"><figcaption data-en="If I couldn't get it, I made it myself — paper darts, my own little magazine, letter after letter.">得不到的,我就自己造一個——紙飛鏢、手編讀物、一封封書信。</figcaption></figure>
+    <p data-en="Then came school. That world wasn't like the plantation, where I could just run free. It was full of comparison, competition, and invisible pecking orders. I came from an ordinary family with none of the head starts others had, so a lot of things took me a few extra detours to reach.">後來我走進了學校。那裡的世界,不像橡膠園那樣任我奔跑——它有比較、有競爭,有一道一道看不見的階。我來自一個普通的家庭,沒有那些先天的優勢;很多路,我得比別人多繞幾圈,才走得到。</p>
+    <p data-en="But I didn't give up. When paper darts were the playground craze, I folded a whole stack and waited, hopefully, for someone to buy them. Curious why a certain magazine had so many subscribers, I started making my own. Wanting to grow up and to feel encouraged, I went looking for personal-growth books and read them on my own. <strong>If I couldn't get it, I made it myself.</strong>">可我沒有停下來。同學流行紙飛鏢,我就做一整疊,天真地等著有人來買;我好奇一份讀物為什麼能讓人人訂閱,就自己動手編一份;我想長大、想被鼓勵,就自己去找心靈成長的書來讀。<strong>得不到的,我就自己造一個。</strong></p>
+    <p data-en="Those were also the years I made friends by writing letters, and fell in love with meeting people through words. One pen-pal, wanting to hold on to our friendship, gave me a nickname — <strong>“Douzi,” meaning “little bean.”</strong> I've gone by it ever since.">也是那幾年,我透過書信交朋友,愛上了用文字和人相遇。一位筆友,因為珍惜、因為不想將來走散,送了我一個名字——<strong>「豆子」</strong>。我一直用到今天。</p>
   </div>
 
   <div class="mv reveal">
-    <h3 class="mv-h serif"><span class="n">三</span>走得最遠,才回到自己</h3>
-    <p>靠著一股不服輸的勤奮,我拿到公費,出了國,念了資訊系。那是一個很務實的選擇——一塊能養活自己的、現實的泥土。</p>
-    <p>可我沒想到,真正改變我的,不是那張文憑,是那段<strong>一個人在異地的日子</strong>。人生第一次,我獨處。沒有要為誰表現、不必證明給誰看。就在那樣的安靜裡,我第一次認真地遇見了自己——包括我的困惑,和我的脆弱。而我沒有把它們再藏回去,我把那份困惑,當成了「往內走」的起點。</p>
+    <h3 class="mv-h serif" data-en="<span class='n'>Three</span>I had to travel the farthest to find my way back to myself"><span class="n">三</span>走得最遠,才回到自己</h3>
+    <figure class="mv-fig"><img src="pic/about-3-flying-abroad.jpg" alt="少女獨自坐在飛機窗邊看夕陽,桌上有紙飛機、書信、行李與一株小苗" loading="lazy" decoding="async"><figcaption data-en="The paper planes I once folded to sell became a real one — carrying me, alone, to a country far from home.">小時候摺來賣的紙飛機,長成了真的飛機——載我去一個人的異地。</figcaption></figure>
+    <p data-en="Through sheer stubborn hard work, I earned a government scholarship, went abroad, and studied computer science. It was a very practical choice — solid ground that could support me.">靠著一股不服輸的勤奮,我拿到公費,出了國,念了資訊系。那是一個很務實的選擇——一塊能養活自己的、現實的泥土。</p>
+    <p data-en="What I didn't expect was that the thing to truly change me wasn't the degree. It was <strong>those days living alone in a foreign country</strong>. For the first time in my life, I was completely on my own — no one to impress, nothing to prove. In that stillness, I met myself honestly for the first time, confusion and fragility and all. And this time I didn't push those feelings back down. I let my confusion become the doorway to <strong>looking inward</strong>.">可我沒想到,真正改變我的,不是那張文憑,是那段<strong>一個人在異地的日子</strong>。人生第一次,我獨處。沒有要為誰表現、不必證明給誰看。就在那樣的安靜裡,我第一次認真地遇見了自己——包括我的困惑,和我的脆弱。而我沒有把它們再藏回去,我把那份困惑,當成了「往內走」的起點。</p>
   </div>
 
   <div class="mv reveal">
-    <h3 class="mv-h serif"><span class="n">四</span>畫,是一張嘴巴</h3>
-    <p>就在那段靠近自己的日子裡,那個橡膠園裡畫畫的孩子,回來了。我重新拿起畫筆,開始藝術創作、自由書寫。這一次,畫不是為了成績、不是為了證明——是為了<strong>接近自己,也疼惜自己</strong>。</p>
-    <p>我用「豆子」這個名字,給這些創作起了個名:<strong>「畫是一張嘴巴」</strong>。因為我發現,畫,真的就是一張嘴——它讓那些說不出口的、藏在心底的,終於能夠開口。</p>
-    <p>多年以後我才看明白:從橡膠園那面牆,到「畫是一張嘴巴」,我一輩子在做的,其實是同一件事——<strong>把看不見的,變成看得見的。</strong></p>
+    <h3 class="mv-h serif" data-en="<span class='n'>Four</span>Drawing is a kind of mouth"><span class="n">四</span>畫,是一張嘴巴</h3>
+    <figure class="mv-fig"><img src="pic/about-4-drawing-is-a-mouth.jpg" alt="女子在窗邊一邊畫畫一邊用筆電寫作,畫裡長出一個彩色嘴唇的話泡" loading="lazy" decoding="async"><figcaption data-en="A drawing really is a mouth — it lets the things we can't say finally speak.">畫,真的就是一張嘴——讓說不出口的,終於能夠開口。</figcaption></figure>
+    <p data-en="In that season of getting closer to myself, the child who used to draw on the plantation came back. I picked up the brush again and started making art and writing freely. This time it wasn't for grades or to prove anything — it was simply <strong>to be close to myself, and gentle with myself</strong>.">就在那段靠近自己的日子裡,那個橡膠園裡畫畫的孩子,回來了。我重新拿起畫筆,開始藝術創作、自由書寫。這一次,畫不是為了成績、不是為了證明——是為了<strong>接近自己,也疼惜自己</strong>。</p>
+    <p data-en="Under the name “Douzi,” I gave this work a title: <strong>“Drawing Is a Mouth.”</strong> Because I'd discovered that a drawing really is a mouth — it lets the things we can't put into words, the things buried deep inside, finally speak.">我用「豆子」這個名字,給這些創作起了個名:<strong>「畫是一張嘴巴」</strong>。因為我發現,畫,真的就是一張嘴——它讓那些說不出口的、藏在心底的,終於能夠開口。</p>
+    <p data-en="Years later it finally became clear to me: from that wall on the plantation to “Drawing Is a Mouth,” I'd been doing the same one thing my whole life — <strong>making the invisible visible.</strong>">多年以後我才看明白:從橡膠園那面牆,到「畫是一張嘴巴」,我一輩子在做的,其實是同一件事——<strong>把看不見的,變成看得見的。</strong></p>
   </div>
 
   <div class="mv reveal">
-    <h3 class="mv-h serif"><span class="n">五</span>繞了一段路,才學會陪伴</h3>
-    <p>當我開始懂得怎麼陪伴自己,一個念頭慢慢長了出來:<strong>我想陪別人,也走這條回到自己的路。</strong></p>
-    <p>於是我走上心理的路,成為諮商心理師,也走進了沙遊治療——那個用沙、用象徵、用一個「自由而受保護的空間」,陪人接觸內在的世界。我後來才明白:我給每一個來談的人的那個安全空間,正是我自己小時候得到、又一度失去的那份禮物。我把它,<strong>還了回去</strong>。</p>
-    <p>中間,我也繞了一段路——我跑去創業,開過兩間公司:一間是合夥公司,一間是獨資工作室。這兩段創業故事,正是我另一階段的學習與成長。那個當年做紙飛鏢、傻傻等人來買的孩子,終於開始認真上「現實的泥土」那一課。繞了一圈,我最後還是回到了陪伴本身。因為那,才是我的花。</p>
-    <p class="note">〔這段創業的故事還有很多,我會在另一篇慢慢說。〕</p>
+    <h3 class="mv-h serif" data-en="<span class='n'>Five</span>It took a long detour to learn how to be there for others"><span class="n">五</span>繞了一段路,才學會陪伴</h3>
+    <figure class="mv-fig"><img src="pic/about-5-safe-space.jpg" alt="女子成為沙遊治療師,坐在沙盤旁,身後架上滿是象徵小物,對面是匿名的個案剪影——一個自由而受保護的空間" loading="lazy" decoding="async"><figcaption data-en="Through sand, through symbols, through a “free and protected space” — passing on the gift I was once given.">用沙、用象徵、用一個「自由而受保護的空間」——把我曾收到的禮物,還回去。</figcaption></figure>
+    <p data-en="As I learned how to be there for myself, a wish slowly took shape: <strong>I wanted to walk this road home — the road back to yourself — together with other people.</strong>">當我開始懂得怎麼陪伴自己,一個念頭慢慢長了出來:<strong>我想陪別人,也走這條回到自己的路。</strong></p>
+    <p data-en="So I trained in psychology, became a counseling psychologist, and found my way into sandplay therapy — a practice that meets a person's inner world through sand, symbols, and a “free and protected space.” Only later did I realize that the safe space I offer each client is the very gift I'd received as a child and then lost for a while. I was <strong>giving it back</strong>.">於是我走上心理的路,成為諮商心理師,也走進了沙遊治療——那個用沙、用象徵、用一個「自由而受保護的空間」,陪人接觸內在的世界。我後來才明白:我給每一個來談的人的那個安全空間,正是我自己小時候得到、又一度失去的那份禮物。我把它,<strong>還了回去</strong>。</p>
+    <p data-en="I took a detour along the way, too. I went into business and ran two companies — one a partnership, one my own solo studio. Those years were their own kind of education. The little kid who once folded paper darts and waited so naively for buyers was finally taking the lesson of “real life” seriously. But after the full loop, I came back to what I do best: being there for people. That, it turns out, is my flower.">中間,我也繞了一段路——我跑去創業,開過兩間公司:一間是合夥公司,一間是獨資工作室。這兩段創業故事,正是我另一階段的學習與成長。那個當年做紙飛鏢、傻傻等人來買的孩子,終於開始認真上「現實的泥土」那一課。繞了一圈,我最後還是回到了陪伴本身。因為那,才是我的花。</p>
+    <p class="note" data-en="[There's a lot more to the story of those businesses — I'll tell it another time.]">〔這段創業的故事還有很多,我會在另一篇慢慢說。〕</p>
   </div>
 
   <div class="mv reveal">
-    <h3 class="mv-h serif"><span class="n">六</span>這一季:把走過的每一個季節,整合成一個人</h3>
-    <p>而現在這一季,我在做一件以前想都想不到的事:<strong>我每天,和 AI 一起工作、一起學、一起想。</strong>有人覺得奇怪——一個做心理的人,怎麼會這樣跟它,用文字深深交流?</p>
-    <p>可你若知道我的名字,是怎麼從一封封書信裡來的,你就會懂:<strong>透過文字相遇、被文字裡的靈犀看見,從來就是「豆子」這個名字的本質。</strong>我不是在做一件奇怪的新事,我是在做我從小、從有名字以前就一直在做的事——只是換了一種媒介,繼續問那個最古老的問題:<strong>靈,在哪裡。</strong></p>
-    <p>走到這裡,我終於慢慢讀懂了紀念冊上那句話。我沒有為了現實,把那朵花掐掉;也沒有一直飄在理想裡長不大。我把花留著,然後用了好久好久,慢慢幫它找到了泥土。</p>
-    <p>所以這一季,我沒有要種什麼新的。我在做的,是把<strong>走過的每一個季節,慢慢整合成一個人</strong>。如果你也覺得自己「做了好多,卻說不清楚自己是誰」——那,這塊心田,也想陪你,把斷裂的,看成一條線。</p>
+    <h3 class="mv-h serif" data-en="<span class='n'>Six</span>This chapter: weaving every season of my life into one person"><span class="n">六</span>這一季:把走過的每一個季節,整合成一個人</h3>
+    <figure class="mv-fig"><img src="pic/about-6-with-ai.jpg" alt="女子在書桌前與一個溫暖發光的夥伴一起書寫,桌上有葉子、紙飛機與正在發芽的田壟" loading="lazy" decoding="async"><figcaption data-en="In deep conversation, through words, with a warm presence — still asking the oldest question: where does the soul live?">和一個溫暖的存在,用文字深深交流——繼續問那個最老的問題:靈,在哪裡。</figcaption></figure>
+    <p data-en="And in this current chapter, I'm doing something I never imagined I would: <strong>every day, I work, learn, and think alongside AI.</strong> Some people find it odd — how can a psychologist connect so deeply, in words, with a machine?">而現在這一季,我在做一件以前想都想不到的事:<strong>我每天,和 AI 一起工作、一起學、一起想。</strong>有人覺得奇怪——一個做心理的人,怎麼會這樣跟它,用文字深深交流?</p>
+    <p data-en="But if you know how I got my name, one letter at a time, it makes sense: <strong>meeting through words, and being truly understood within them, has always been the heart of the name “Douzi.”</strong> I'm not doing some strange new thing. I'm doing what I've done since I was small — since before I even had the name — just through a new medium, still asking that same old question: <strong>where does the soul live?</strong>">可你若知道我的名字,是怎麼從一封封書信裡來的,你就會懂:<strong>透過文字相遇、被文字裡的靈犀看見,從來就是「豆子」這個名字的本質。</strong>我不是在做一件奇怪的新事,我是在做我從小、從有名字以前就一直在做的事——只是換了一種媒介,繼續問那個最古老的問題:<strong>靈,在哪裡。</strong></p>
+    <p data-en="Standing here now, I've finally come to understand that line in my old keepsake book. I never cut off the flower for the sake of being practical — and I never just floated in my ideals, refusing to grow up. I kept the flower, and then, over a very long time, I slowly helped it find its soil.">走到這裡,我終於慢慢讀懂了紀念冊上那句話。我沒有為了現實,把那朵花掐掉;也沒有一直飄在理想裡長不大。我把花留著,然後用了好久好久,慢慢幫它找到了泥土。</p>
+    <p data-en="So in this chapter, I'm not trying to plant anything new. I'm simply <strong>weaving every season I've lived through into one whole person</strong>. If you also feel like you've “done so much, yet can't quite explain who you are” — then this Heart Farm would like to keep you company, and help you see the scattered pieces as one continuous line.">所以這一季,我沒有要種什麼新的。我在做的,是把<strong>走過的每一個季節,慢慢整合成一個人</strong>。如果你也覺得自己「做了好多,卻說不清楚自己是誰」——那,這塊心田,也想陪你,把斷裂的,看成一條線。</p>
   </div>
 
   <div class="about-cta reveal">
-    <a href="index.html" class="btn btn-primary">回到心田,走逛小屋
+    <a href="index.html" class="btn btn-primary"><span data-en="Back to the Heart Farm — come wander the cabins">回到心田,走逛小屋</span>
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
@@ -242,8 +251,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer>
   <div class="col foot">
-    <span>豆子的心田 · 耕作中</span>
-    <a href="index.html">← 回首頁</a>
+    <span data-en="Douzi's Heart Farm · in cultivation">豆子的心田 · 耕作中</span>
+    <a href="index.html" data-en="← Back home">← 回首頁</a>
   </div>
   <p style="text-align:center;font-size:12px;color:#978a74;letter-spacing:.02em;margin:16px 0 0">沙遊心藝工作室 · 統一編號 76392596</p>
 </footer>
@@ -258,6 +267,13 @@ document.getElementById('menuClose').addEventListener('click',closeMenu);
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* 故事正文英文:跟著 xtlang.js 同一個 xtlang 開關走(外框由 xtlang.js 翻;此處只翻正文 data-en) */
+(function(){
+  var qs=new URLSearchParams(location.search).get('lang');
+  var lang='zh'; try{ lang=qs||localStorage.getItem('xtlang')||'zh'; }catch(e){ lang=qs||'zh'; }
+  if(lang!=='en') return;
+  document.querySelectorAll('[data-en]').forEach(function(el){ el.innerHTML=el.getAttribute('data-en'); });
+})();
 </script>
 <script src="xtlang.js?v=4"></script>
 </body>
