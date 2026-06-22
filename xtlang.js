@@ -28,7 +28,15 @@
     "下一畦長出來,我再寫信給你 ——":"When the next row grows, I'll write to you ——",
     "留個位子":"Save me a seat",
     "沒有指定文章。":"No article specified.",
-    "找不到這一篇,也許它還在發芽,或被移走了。":"This one can't be found — perhaps it's still sprouting, or has been moved."
+    "找不到這一篇,也許它還在發芽,或被移走了。":"This one can't be found — perhaps it's still sprouting, or has been moved.",
+    // 文章標籤 / hashtag（2026-06-22 豆子拍板；顯示翻英、篩選邏輯仍用中文 data-t）
+    "之間":"in-between","信任":"trust","個體化":"individuation","協作實驗":"collaboration",
+    "回家":"coming home","土地":"the soil","墨丘利":"Mercurius","夢":"dreams",
+    "安心":"feeling safe","心理學":"psychology","心理穩定":"psychological stability","心田":"Heart Farm",
+    "榮格":"Jung","沙遊":"sandplay","生命故事":"life story","自主":"autonomy",
+    "自性":"the Self","自給自足":"self-sufficiency","與AI一起":"with AI","萬物有靈":"all things have soul",
+    "覺察":"awareness","認識阿禾":"Meet Paddy","誕生":"birth","靈性成長":"spiritual growth",
+    "非人來信":"letters from the non-human"
   };
 
   var qsLang = new URLSearchParams(location.search).get("lang");
